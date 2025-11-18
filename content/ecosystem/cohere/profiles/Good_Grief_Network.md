@@ -33,7 +33,6 @@ https://www.goodgriefnetwork.org/about/
 
 - Laura Schmidt, Founding Director
 - Aimee Lewis Reau, Co-founder
-- Sarah JS, Executive Director
 
 ## Learning Resources
 
