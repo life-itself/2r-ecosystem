@@ -42,7 +42,7 @@ https://worldviewjourneys.com/mission/
 
 They look to provide integral spiral-dynamic-y worldview stages assessment.
 
-Tests are here [https://wvtest.com/](https://wvtest.com/ "https://wvtest.com/") and looks like the tests are paid for e.g. €99 / year.
+Tests are here [https://wvtest.com/](https://wvtest.com/ "https://wvtest.com/") and looks like the tests are paid for e.g. €99 / year. Individuals and small groups of up to 28 test-takers can take the test for free. 
 
 ![[../../../assets/worldviewjourneys-1.webp]]
 
@@ -68,6 +68,10 @@ And for full background:
 > In this publication you can find a much more elaborate version of the above table (on p. 102), as well as an extensive report of the study the Worldview Test is based on. Here you can read about the research-approach that was used to develop the Worldview Test. ...
 
 The publication is "A new tool to map the major worldviews in the Netherlands and USA, and explore how they relate to climate change" (2016) [https://www.sciencedirect.com/science/article/pii/S1462901116301794](https://www.sciencedirect.com/science/article/pii/S1462901116301794 "https://www.sciencedirect.com/science/article/pii/S1462901116301794") co-authored with Nic Hedlund
+
+## Other Work
+
+Besides the worldview assessment, they have also done a lot of work in bringing worldview-awareness and exploration into higher education, though a transformative learning program called the 'Worldview Journey'. This programme has been academically researched and published, see for example: DeWitt et al., ['Designing transformative interventions for a world in crisis: How the ‘Worldview Journey’ invites for personal, cultural, and systems transformation'](https://www.sciencedirect.com/science/article/pii/S1462901124002302) (2024).
 
 ## Key People
 
