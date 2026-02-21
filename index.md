@@ -2,15 +2,16 @@
 
 Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change.
 
-https://secondrenaissance.net/
+## Mappings
 
-## Structure
+### [State of Sensemaking (2020)](state-of-sensemaking-2020)
 
-- `pip/` - Paradigmatic, Integrative, Pragmatic ecosystem mapping (~150 profiles)
-- `cohere/` - Cohere+ project profiles (~300 profiles)
-- `topics/` - Topic definitions
-- `assets/` - Images and other assets
+An early survey mapping the emerging ecosystem of organizations and initiatives working on collective sense-making and societal transformation.
 
-## Hosted on Flowershow Cloud
+### [PIP Ecosystem Map](pip/)
 
-This site is built with [Flowershow Cloud](https://flowershow.app/).
+Profiles of ~150 organizations and initiatives taking Paradigmatic, Integrative, and Pragmatic approaches to social change.
+
+### [Cohere+ Profiles](cohere/)
+
+Profiles of ~300 projects and organizations in the broader ecosystem of transformative social change.
