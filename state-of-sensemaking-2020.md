@@ -5,14 +5,15 @@ contributors:
   - rufuspollock
   - theo-cox
   - elisalifeitself
+image: /assets/Social_Change_Ecosystem-1024x626.png
 ---
-This page documents the first phase (2019-2020) of Life Itself's [[../ecosystem|ecosystem]] mapping work, including:
+
+This page documents the first phase (2019-2020) of Life Itself's ecosystem mapping work, including:
 
 1. Background to the work
 2. Research questions
 3. Report
 4. Preliminary map
-
 
 ![[../assets/Social_Change_Ecosystem-1024x626.png]]
 
