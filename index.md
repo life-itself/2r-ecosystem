@@ -1,4 +1,8 @@
-# Second Renaissance Ecosystem
+---
+title: Second Renaissance Ecosystem Mapping
+description: Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change.
+image: /assets/Social_Change_Ecosystem-1024x626.png
+---
 
 Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change.
 
