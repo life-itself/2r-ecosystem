@@ -1,5 +1,6 @@
 ---
 title: Mapping an Emerging Ecosystem of Paradigmatic, Integrative, Pragmatic Changemakers
+syntaxMode: mdx
 ---
 
 # Mapping an Emerging Ecosystem
@@ -90,7 +91,22 @@ Read more about the visualization in the [full report](https://drive.google.com/
 
 Explore the directory of organizations, communities, and initiatives who are active in or close to the ecosystem.
 
-> [!note] ProfileSearch Directory
-> Interactive searchable directory to be re-added
-
-In the meantime, browse the [profiles directory](profiles/).
+```base
+filters:
+  and:
+    - file.inFolder("pip/profiles")
+properties:
+  note.title:
+    displayName: Title
+  note.started:
+    displayName: Started
+views:
+  - type: cards
+    name: Cards
+    order:
+      - title
+      - started
+    image: note.image
+    cardSize: 190
+    imageAspectRatio: 1
+```
