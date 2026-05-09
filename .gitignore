@@ -1,6 +1,8 @@
 .DS_Store
 markdown.db
 node_modules/
+.astro/
+dist/
 .next/
 out/
 .obsidian/

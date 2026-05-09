@@ -1,0 +1,17 @@
+{
+  "name": "second-renaissance-ecosystem",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/copy-static-assets.mjs",
+    "check": "astro check",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^6.3.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {}
+}

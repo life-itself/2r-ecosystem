@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const profiles = (await getCollection('cohere')).sort((a, b) =>
+  String(a.data.title ?? a.id).localeCompare(String(b.data.title ?? b.id)),
+);
+
+const sampleProfiles = profiles.slice(0, 24);
+---
+
+<Base
+  title="Cohere+ Profiles | Second Renaissance Ecosystem"
+  description="Cohere+ ecosystem profiles loaded from the root-level markdown collection."
+>
+  <h1>Cohere+ Profiles</h1>
+  <p class="lede">
+    Project profiles from the Cohere+ mapping. This page verifies that Astro is
+    reading the existing root-level markdown collection.
+  </p>
+
+  <div class="stat">
+    <strong>{profiles.length}</strong>
+    <span>profiles loaded</span>
+  </div>
+
+  <h2>Sample Profiles</h2>
+  <ul class="profile-list">
+    {
+      sampleProfiles.map((profile) => (
+        <li>{String(profile.data.title ?? profile.id)}</li>
+      ))
+    }
+  </ul>
+</Base>
