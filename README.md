@@ -11,6 +11,21 @@ https://secondrenaissance.net/
 - `topics/` - Topic definitions
 - `assets/` - Images and other assets
 
-## Hosted on Flowershow Cloud
+## Build
 
-This site is built with [Flowershow Cloud](https://flowershow.app/).
+This site is built with Astro.
+
+```bash
+npm install
+npm run build
+```
+
+The static site is emitted to `dist/`.
+
+## Deploy
+
+Deploy with Cloudflare Pages:
+
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Production domain: `ecosystem.secondrenaissance.net`
