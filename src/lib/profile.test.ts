@@ -29,7 +29,7 @@ describe('normalizeImagePath', () => {
   test('uses cached_new from nested PIP image objects', () => {
     expect(
       normalizeImagePath({ cached_new: '/img/life-itself-logo_syl7ai.svg' }),
-    ).toBe('/img/life-itself-logo_syl7ai.svg');
+    ).toBe('/assets/img/life-itself-logo_syl7ai.svg');
   });
 
   test('drops missing local image paths', () => {
@@ -71,8 +71,8 @@ describe('field normalization', () => {
       summary: 'Pragmatic utopians',
       tags: ['spaces', 'research'],
       location: 'Bergerac, FR',
-      logo: '/img/life-itself-logo_syl7ai.svg',
-      image: '/img/repo-homepage.png',
+      logo: '/assets/img/life-itself-logo_syl7ai.svg',
+      image: '/assets/img/repo-homepage.png',
     });
   });
 

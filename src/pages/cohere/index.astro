@@ -14,16 +14,21 @@ const profiles = (await getCollection('cohere'))
   title="Cohere+ Profiles | Second Renaissance Ecosystem"
   description="Cohere+ ecosystem profiles loaded from the root-level markdown collection."
 >
-  <h1>Cohere+ Profiles</h1>
-  <p class="lede">
-    Project profiles from the Cohere+ mapping, loaded from the existing
-    root-level markdown collection.
-  </p>
+  <section class="directory-header">
+    <div>
+      <p class="landing-kicker">Cohere+ map</p>
+      <h1>Cohere+ Profiles</h1>
+      <p class="lede">
+        Project profiles from the Cohere+ mapping, loaded from the existing
+        root-level markdown collection.
+      </p>
+    </div>
 
-  <div class="stat">
-    <strong>{profiles.length}</strong>
-    <span>profiles loaded</span>
-  </div>
+    <div class="stat">
+      <strong>{profiles.length}</strong>
+      <span>profiles loaded</span>
+    </div>
+  </section>
 
   <div class="directory-controls">
     <label class="muted" for="directory-search">Search profiles</label>
@@ -72,11 +77,15 @@ const profiles = (await getCollection('cohere'))
       ))
     }
   </div>
+  <p class="directory-empty" data-directory-empty>
+    No profiles match that search.
+  </p>
 
   <script>
     const search = document.querySelector<HTMLInputElement>('#directory-search');
     const items = Array.from(document.querySelectorAll<HTMLElement>('[data-directory-item]'));
     const count = document.querySelector<HTMLElement>('[data-directory-count]');
+    const empty = document.querySelector<HTMLElement>('[data-directory-empty]');
 
     search?.addEventListener('input', () => {
       const query = search.value.trim().toLowerCase();
@@ -89,6 +98,7 @@ const profiles = (await getCollection('cohere'))
       }
 
       if (count) count.textContent = `${visible} shown`;
+      if (empty) empty.dataset.visible = String(visible === 0);
     });
   </script>
 </Base>

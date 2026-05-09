@@ -57,12 +57,16 @@ export function normalizeImagePath(value: unknown): string | undefined {
     return localImagePath(`/${path}`);
   }
 
-  if (path.startsWith('/assets/') || path.startsWith('/img/')) {
+  if (path.startsWith('/assets/')) {
     return localImagePath(path);
   }
 
+  if (path.startsWith('/img/')) {
+    return localImagePath(`/assets${path}`);
+  }
+
   if (path.startsWith('img/')) {
-    return localImagePath(`/${path}`);
+    return localImagePath(`/assets/${path}`);
   }
 
   if (/^https?:\/\//.test(path)) {
@@ -146,10 +150,6 @@ function localImagePath(path: string): string | undefined {
 
   if (decodedPath.startsWith('/assets/')) {
     return existsSync(decodedPath.replace(/^\//, '')) ? decodedPath : undefined;
-  }
-
-  if (decodedPath.startsWith('/img/')) {
-    return existsSync(`assets${decodedPath}`) ? decodedPath : undefined;
   }
 
   return decodedPath;
