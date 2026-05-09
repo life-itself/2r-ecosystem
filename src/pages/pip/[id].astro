@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import {
+  getFirst,
+  isCuratedPipProfile,
+  normalizeProfile,
+  normalizeTags,
+  normalizeUrl,
+} from '../../lib/profile';
+
+export async function getStaticPaths() {
+  const profiles = (await getCollection('pip')).filter((profile) =>
+    isCuratedPipProfile(profile.data),
+  );
+
+  return profiles.map((profile) => ({
+    params: { id: profile.id },
+    props: { entry: profile },
+  }));
+}
+
+const { entry } = Astro.props;
+const profile = normalizeProfile({
+  collection: 'pip',
+  id: entry.id,
+  data: entry.data,
+});
+const { Content } = await render(entry);
+const socialLinks = [
+  ['Website', profile.url],
+  ['Facebook', normalizeUrl(entry.data.facebook)],
+  ['Twitter', normalizeUrl(entry.data.twitter)],
+  ['Instagram', normalizeUrl(entry.data.instagram)],
+  ['LinkedIn', normalizeUrl(entry.data.linkedin)],
+  ['YouTube', normalizeUrl(entry.data.youtube)],
+  ['Blog', normalizeUrl(entry.data.blog)],
+].filter(([, url]) => url);
+const topics = normalizeTags(entry.data.topic);
+const people = normalizeTags(entry.data.people);
+const started = getFirst(entry.data.started);
+---
+
+<Base
+  title={`${profile.title} | PIP Profiles`}
+  description={profile.summary ?? `PIP profile for ${profile.title}.`}
+>
+  <a class="back-link" href="/pip/">Back to PIP profiles</a>
+
+  <section class="profile-hero">
+    <div>
+      {profile.eyebrow && <p class="eyebrow">Active: {profile.eyebrow}</p>}
+      <h1>{profile.title}</h1>
+      {profile.summary && <p class="lede">{profile.summary}</p>}
+      {
+        socialLinks.length > 0 && (
+          <ul class="tag-list">
+            {socialLinks.map(([label, url]) => (
+              <li>
+                <a href={url}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    {
+      profile.logo && (
+        <div class="profile-logo">
+          <img src={profile.logo} alt={`${profile.title} logo`} />
+        </div>
+      )
+    }
+  </section>
+
+  <dl class="metadata">
+    {profile.location && <div><dt>Location</dt><dd>{profile.location}</dd></div>}
+    {started && <div><dt>Started</dt><dd>{started}</dd></div>}
+    {profile.tags.length > 0 && <div><dt>Activities</dt><dd>{profile.tags.join(', ')}</dd></div>}
+    {topics.length > 0 && <div><dt>Topics</dt><dd>{topics.join(', ')}</dd></div>}
+    {people.length > 0 && <div><dt>People</dt><dd>{people.join(', ')}</dd></div>}
+  </dl>
+
+  <article class="profile-body">
+    <Content />
+  </article>
+</Base>

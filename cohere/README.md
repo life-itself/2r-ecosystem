@@ -1,12 +1,10 @@
 
+# Cohere+ Profiles
 
-```dataview
-table y, x, territory
-from "content/ecosystem/cohere/profiles"
-sort territory asc
-```
+This directory contains the Cohere+ project profile markdown files. The Astro
+site builds the public directory from `cohere/profiles/`.
 
-## Cohere + project 
+## Cohere+ project
 
 The overall objectives of the Cohere+ project are:
 
@@ -18,8 +16,8 @@ The overall objectives of the Cohere+ project are:
     
 4. To educate change agents and citizens within and beyond the field, to build the field’s spheres of influence and thus leverage our collective power to co-create the future Europe we want to live in.
 
-## Examples
+## Example profiles
 
-[[profiles/42_Acres]]
-[[profiles/Center_for_Systems_Awareness]]
-[[profiles/Joysong_Collective]]
+- [[profiles/42_Acres]]
+- [[profiles/Center_for_Systems_Awareness]]
+- [[profiles/Joysong_Collective]]

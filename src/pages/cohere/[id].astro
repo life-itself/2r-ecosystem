@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import {
+  getFirst,
+  normalizeProfile,
+  normalizeTags,
+  normalizeUrl,
+} from '../../lib/profile';
+
+export async function getStaticPaths() {
+  const profiles = await getCollection('cohere');
+
+  return profiles.map((profile) => ({
+    params: { id: profile.id },
+    props: { entry: profile },
+  }));
+}
+
+const { entry } = Astro.props;
+const profile = normalizeProfile({
+  collection: 'cohere',
+  id: entry.id,
+  data: entry.data,
+});
+const { Content } = await render(entry);
+const activities = normalizeTags(entry.data.activities);
+const sectors = normalizeTags(entry.data.sectors);
+const start = getFirst(entry.data.start);
+const end = getFirst(entry.data.end);
+const size = getFirst(entry.data.size);
+const email = getFirst(entry.data.email);
+const website = normalizeUrl(entry.data.url);
+---
+
+<Base
+  title={`${profile.title} | Cohere+ Profiles`}
+  description={`Cohere+ profile for ${profile.title}.`}
+>
+  <a class="back-link" href="/cohere/">Back to Cohere+ profiles</a>
+
+  <section class="profile-hero">
+    <div>
+      {profile.eyebrow && <p class="eyebrow">{profile.eyebrow}</p>}
+      <h1>{profile.title}</h1>
+      {
+        website && (
+          <p>
+            <a href={website}>{website}</a>
+          </p>
+        )
+      }
+    </div>
+
+    {
+      profile.logo && (
+        <div class="profile-logo">
+          <img src={profile.logo} alt={`${profile.title} logo`} />
+        </div>
+      )
+    }
+  </section>
+
+  <dl class="metadata">
+    {profile.location && <div><dt>Location</dt><dd>{profile.location}</dd></div>}
+    {profile.eyebrow && <div><dt>Territory</dt><dd>{profile.eyebrow}</dd></div>}
+    {sectors.length > 0 && <div><dt>Sectors</dt><dd>{sectors.join(', ')}</dd></div>}
+    {activities.length > 0 && <div><dt>Activities</dt><dd>{activities.join(', ')}</dd></div>}
+    {size && <div><dt>Size</dt><dd>{size}</dd></div>}
+    {(start || end) && <div><dt>Dates</dt><dd>{[start, end].filter(Boolean).join(' - ')}</dd></div>}
+    {email && <div><dt>Email</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>}
+  </dl>
+
+  <article class="profile-body">
+    <Content />
+  </article>
+</Base>
