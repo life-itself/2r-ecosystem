@@ -613,3 +613,21 @@ main {
     white-space: normal;
   }
 }
+
+.topic-legend {
+  margin-top: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.topic-legend li {
+  margin-bottom: 12px;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.topic-legend strong {
+  color: var(--color-text);
+  font-weight: 700;
+}

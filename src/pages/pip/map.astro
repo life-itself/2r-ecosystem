@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { readFileSync } from 'fs';
+import { parse } from 'yaml';
 import CircularVis from '../../components/CircularVis';
 import TernaryPlot from '../../components/TernaryPlot';
 import Base from '../../layouts/Base.astro';
@@ -12,6 +14,15 @@ const profiles = (await getCollection('pip'))
     toInteractiveProfile({ collection: 'pip', id: profile.id, data: profile.data }),
   )
   .sort((a, b) => a.title.localeCompare(b.title));
+
+const topicIds = ['arts', 'community', 'development', 'ecology', 'governance', 'politics', 'spirituality', 'tech', 'wellbeing', 'work'];
+const topics = topicIds.map((id) => {
+  const content = readFileSync(`pip/topics/${id}.md`, 'utf-8');
+  const [, frontmatter, body] = content.split('---');
+  const data = parse(frontmatter);
+  const description = body.trim();
+  return { id, title: data.title, description };
+}).sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <Base
@@ -35,6 +46,14 @@ const profiles = (await getCollection('pip'))
     <section>
       <h2>Organizations by Topic</h2>
       <CircularVis profiles={profiles} client:load />
+
+      <ul class="topic-legend">
+        {topics.map((topic) => (
+          <li>
+            <strong>{topic.title}</strong> — {topic.description}
+          </li>
+        ))}
+      </ul>
     </section>
   </div>
 </Base>
