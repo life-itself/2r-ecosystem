@@ -45,14 +45,34 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
     const left = (width - triangleWidth) / 2;
     const top = margin;
     const vertices = [
-      { label: 'Systems Change', x: left, y: top + triangleHeight },
-      { label: 'Inner Change', x: left + triangleWidth / 2, y: top },
-      { label: 'Cultural Change', x: left + triangleWidth, y: top + triangleHeight },
+      { label: '100% Systems Change Focus', x: left, y: top + triangleHeight },
+      { label: '100% Inner Change Focus', x: left + triangleWidth / 2, y: top },
+      { label: '100% Cultural Change Focus', x: left + triangleWidth, y: top + triangleHeight },
     ];
     const color = d3.scaleOrdinal<string, string>(topics, d3.schemeTableau10);
-    const points = plottableProfiles.map((profile) =>
-      getTernaryPoint(profile, width, height),
-    );
+    const points = plottableProfiles.map((profile) => {
+      const point = getTernaryPoint(profile, width, height);
+      const nearby = plottableProfiles.filter(
+        (p) =>
+          Math.hypot(
+            getTernaryPoint(p, width, height).x - point.x,
+            getTernaryPoint(p, width, height).y - point.y,
+          ) < 2,
+      );
+
+      if (nearby.length > 1) {
+        const hash = hashCode(profile.id);
+        const angle = ((hash % 360) * Math.PI) / 180;
+        const distance = 2.5 + ((hash >> 8) % 15) * 0.3;
+        const jitterX = Math.cos(angle) * distance;
+        const jitterY = Math.sin(angle) * distance;
+
+        point.x += jitterX;
+        point.y += jitterY;
+      }
+
+      return point;
+    });
 
     const legendX = width - 140;
     const legendY = 16;
@@ -62,7 +82,8 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
       .attr('d', `M${vertices[0].x},${vertices[0].y}L${vertices[1].x},${vertices[1].y}L${vertices[2].x},${vertices[2].y}Z`)
       .attr('fill', 'none')
       .attr('stroke', '#666058')
-      .attr('stroke-width', 1.4);
+      .attr('stroke-width', 1.4)
+      .attr('opacity', 0.3);
 
     svg
       .append('g')
@@ -70,7 +91,7 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
       .data(vertices)
       .join('text')
       .attr('x', (vertex) => vertex.x)
-      .attr('y', (vertex) => vertex.y + (vertex.label === 'Inner Change' ? -18 : 28))
+      .attr('y', (vertex, i) => vertex.y + (i === 1 ? -28 : 28))
       .attr('text-anchor', 'middle')
       .attr('font-size', 14)
       .attr('font-weight', 700)
@@ -78,36 +99,42 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
       .attr('fill', '#1e1d1a')
       .text((vertex) => vertex.label);
 
-    const groups = svg
-      .append('g')
+    const dotsGroup = svg.append('g').attr('class', 'dots-group');
+    const labelsGroup = svg.append('g').attr('class', 'labels-group');
+
+    const dots = dotsGroup
       .selectAll('g')
       .data(points)
       .join('g')
       .attr('transform', (point) => `translate(${point.x},${point.y})`);
 
-    groups
+    dots
       .append('circle')
-      .attr('r', 5)
+      .attr('r', 3.5)
       .attr('fill', (point) => color(point.colorKey))
       .attr('stroke', '#1e1d1a')
-      .attr('stroke-width', 0.8)
-      .on('mouseenter focus', function () {
-        d3.select(this.parentNode).select('.ternary-label').style('opacity', 1);
+      .attr('stroke-width', 0.6)
+      .on('mouseenter focus', function (_, point) {
+        labelsGroup
+          .selectAll(`.label-${point.id.replace(/[^a-z0-9]/gi, '-')}`)
+          .style('opacity', 1);
       })
-      .on('mouseleave blur', function () {
-        d3.select(this.parentNode)
-          .select('.ternary-label')
+      .on('mouseleave blur', function (_, point) {
+        labelsGroup
+          .selectAll(`.label-${point.id.replace(/[^a-z0-9]/gi, '-')}`)
           .style('opacity', showLabels ? 1 : 0);
       });
 
-    groups.each(function (point, i) {
+    points.forEach((point) => {
       const nearby = points.filter((p) => Math.hypot(p.x - point.x, p.y - point.y) < 1.5);
       const indexInNearby = nearby.findIndex((p) => p.id === point.id);
       const offsetY = (indexInNearby - (nearby.length - 1) / 2) * 8;
+      const safeId = point.id.replace(/[^a-z0-9]/gi, '-');
 
-      d3.select(this)
+      labelsGroup
         .append('text')
-        .attr('class', 'ternary-label')
+        .attr('class', `ternary-label label-${safeId}`)
+        .attr('transform', `translate(${point.x},${point.y})`)
         .attr('x', 7)
         .attr('y', offsetY)
         .attr('font-size', 6)
@@ -116,7 +143,7 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
         .attr('opacity', showLabels ? 1 : 0)
         .attr('text-anchor', 'start')
         .attr('dominant-baseline', 'middle')
-        .text((d) => d.title);
+        .text(point.title);
     });
 
     const legendGroup = svg.append('g').attr('class', 'legend-group');
@@ -161,6 +188,16 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
       </div>
     </section>
   );
+}
+
+function hashCode(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash;
+  }
+  return Math.abs(hash);
 }
 
 function escapeHtml(value: string): string {
