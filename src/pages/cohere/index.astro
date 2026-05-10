@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
+import ProfileSearch from '../../components/ProfileSearch';
 import Base from '../../layouts/Base.astro';
-import { normalizeProfile } from '../../lib/profile';
+import { toInteractiveProfile } from '../../lib/interactive-server';
 
 const profiles = (await getCollection('cohere'))
   .map((profile) =>
-    normalizeProfile({ collection: 'cohere', id: profile.id, data: profile.data }),
+    toInteractiveProfile({ collection: 'cohere', id: profile.id, data: profile.data }),
   )
   .sort((a, b) => a.title.localeCompare(b.title));
 ---
@@ -25,70 +26,10 @@ const profiles = (await getCollection('cohere'))
     <span>profiles loaded</span>
   </div>
 
-  <div class="directory-controls">
-    <label class="muted" for="directory-search">Search profiles</label>
-    <input id="directory-search" type="search" autocomplete="off" />
-    <span class="directory-count" data-directory-count>{profiles.length} shown</span>
-  </div>
-
-  <div class="profile-list" data-directory-list>
-    {
-      profiles.map((profile) => (
-        <a
-          class="profile-card"
-          href={`/cohere/${profile.id}/`}
-          data-directory-item
-          data-search={[
-            profile.title,
-            profile.eyebrow,
-            profile.location,
-            ...profile.tags,
-            ...profile.secondaryTags,
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .toLowerCase()}
-        >
-          <div class={`profile-card-media ${profile.logo ? 'logo' : ''}`}>
-            {profile.logo ? (
-              <img src={profile.logo} alt={`${profile.title} logo`} loading="lazy" />
-            ) : (
-              <span class="muted">No image</span>
-            )}
-          </div>
-          <div class="profile-card-body">
-            {profile.eyebrow && <p class="eyebrow">{profile.eyebrow}</p>}
-            <h2>{profile.title}</h2>
-            {profile.location && <p class="muted">{profile.location}</p>}
-            {profile.tags.length > 0 && (
-              <ul class="tag-list">
-                {profile.tags.slice(0, 3).map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </a>
-      ))
-    }
-  </div>
-
-  <script>
-    const search = document.querySelector<HTMLInputElement>('#directory-search');
-    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-directory-item]'));
-    const count = document.querySelector<HTMLElement>('[data-directory-count]');
-
-    search?.addEventListener('input', () => {
-      const query = search.value.trim().toLowerCase();
-      let visible = 0;
-
-      for (const item of items) {
-        const matches = !query || item.dataset.search?.includes(query);
-        item.hidden = !matches;
-        if (matches) visible += 1;
-      }
-
-      if (count) count.textContent = `${visible} shown`;
-    });
-  </script>
+  <ProfileSearch
+    profiles={profiles}
+    primaryLabel="Sector"
+    secondaryLabel="Activity"
+    client:load
+  />
 </Base>
