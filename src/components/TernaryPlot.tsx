@@ -63,7 +63,7 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
       if (nearby.length > 1) {
         const hash = hashCode(profile.id);
         const angle = ((hash % 360) * Math.PI) / 180;
-        const distance = 2.5 + ((hash >> 8) % 15) * 0.3;
+        const distance = 2.8 + ((hash >> 8) % 18) * 0.35;
         const jitterX = Math.cos(angle) * distance;
         const jitterY = Math.sin(angle) * distance;
 
@@ -137,7 +137,7 @@ export default function TernaryPlot({ profiles, topics: topicDescriptions }: Pro
         .attr('transform', `translate(${point.x},${point.y})`)
         .attr('x', 7)
         .attr('y', offsetY)
-        .attr('font-size', 6)
+        .attr('font-size', 8)
         .attr('font-family', "'Cormorant Garamond', serif")
         .attr('fill', '#1e1d1a')
         .attr('opacity', showLabels ? 1 : 0)
