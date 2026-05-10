@@ -36,8 +36,13 @@ export default function CircularVis({ profiles }: Props) {
     svg.attr('viewBox', `0 0 ${size} ${size}`);
 
     const color = d3
-      .scaleSequential([0, root.height || 1], d3.interpolateYlOrBr)
-      .interpolator(d3.interpolateYlOrBr);
+      .scaleSequential([0, root.height || 1], (t) => {
+        const yellows = ['#f5f0e6', '#e8dcc2', '#dcc89a', '#c9b070'];
+        const idx = Math.floor(t * (yellows.length - 1));
+        return yellows[Math.min(idx, yellows.length - 1)];
+      });
+
+    const defs = svg.append('defs');
 
     const node = svg
       .append('g')
@@ -63,27 +68,56 @@ export default function CircularVis({ profiles }: Props) {
       return getNodeLabel(d.data);
     });
 
-    const leaves = node.filter((d) => !d.children && d.r > 10);
+    const leaves = node.filter((d) => !d.children);
 
-    leaves
-      .append('text')
-      .attr('text-anchor', 'middle')
-      .attr('font-size', (d) => Math.max(8, Math.min(12, d.r / 4)))
-      .attr('fill', '#1e1d1a')
-      .selectAll('tspan')
-      .data((d) => splitLabel(getNodeLabel(d.data), d.r))
-      .join('tspan')
-      .attr('x', 0)
-      .attr('dy', (_d, i) => (i === 0 ? 0 : '1.1em'))
-      .text((line) => line);
+    leaves.each(function (d, i) {
+      const g = d3.select(this);
+      const clipId = `clip-${i}`;
 
-    leaves
-      .style('cursor', 'pointer')
-      .on('click', (_event, d) => {
+      defs
+        .append('clipPath')
+        .attr('id', clipId)
+        .append('circle')
+        .attr('r', d.r);
+
+      if (isPackLeaf(d.data) && d.data.logo) {
+        g.append('image')
+          .attr('href', d.data.logo)
+          .attr('x', -d.r)
+          .attr('y', -d.r)
+          .attr('width', d.r * 2)
+          .attr('height', d.r * 2)
+          .attr('clip-path', `url(#${clipId})`)
+          .attr('preserveAspectRatio', 'xMidYMid slice')
+          .on('error', function () {
+            d3.select(this).remove();
+            renderInitialsFallback(g, d);
+          });
+      } else {
+        renderInitialsFallback(g, d);
+      }
+
+      g.style('cursor', 'pointer').on('click', (_event) => {
         if (isPackLeaf(d.data)) {
           window.location.href = d.data.href;
         }
       });
+    });
+
+    svg
+      .selectAll('.topic-label')
+      .data(packedRoot.descendants().filter((d) => d.children && d.parent))
+      .join('text')
+      .attr('class', 'topic-label')
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'central')
+      .attr('x', (d) => d.x)
+      .attr('y', (d) => d.y - d.r - 8)
+      .attr('font-size', '12px')
+      .attr('font-weight', '700')
+      .attr('fill', '#1e1d1a')
+      .text((d) => toTitleCase(String(d.data.name)))
+      .style('pointer-events', 'none');
   }, [hierarchy]);
 
   return (
@@ -95,6 +129,29 @@ export default function CircularVis({ profiles }: Props) {
   );
 }
 
+function renderInitialsFallback(g: d3.Selection<SVGGElement, unknown, null, undefined>, d: any) {
+  const leafData = d.data as PackLeaf;
+  const initials = leafData.title
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+
+  g.append('circle')
+    .attr('r', d.r)
+    .attr('fill', '#ece7dd')
+    .attr('stroke', 'none');
+
+  g.append('text')
+    .attr('text-anchor', 'middle')
+    .attr('dominant-baseline', 'central')
+    .attr('font-size', (d.r / 2).toString())
+    .attr('font-weight', '600')
+    .attr('fill', '#1e1d1a')
+    .text(initials);
+}
+
 function getNodeLabel(node: PackNode | PackLeaf): string {
   return isPackLeaf(node) ? node.title : node.name;
 }
@@ -103,25 +160,9 @@ function isPackLeaf(node: PackNode | PackLeaf): node is PackLeaf {
   return 'href' in node && typeof node.href === 'string';
 }
 
-function splitLabel(label: string, radius: number): string[] {
-  const maxChars = Math.max(8, Math.floor(radius / 3));
-  const words = label.split(/\s+/);
-  const lines: string[] = [];
-  let current = '';
-
-  for (const word of words) {
-    const next = current ? `${current} ${word}` : word;
-    if (next.length > maxChars && current) {
-      lines.push(current);
-      current = word;
-    } else {
-      current = next;
-    }
-  }
-
-  if (current) {
-    lines.push(current);
-  }
-
-  return lines.slice(0, 3);
+function toTitleCase(str: string): string {
+  return str
+    .split(/[-_\s]+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
 }
