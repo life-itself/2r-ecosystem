@@ -5,12 +5,13 @@ import { getTernaryPoint, type InteractiveProfile } from '../lib/interactive';
 
 type Props = {
   profiles: InteractiveProfile[];
+  topics?: Array<{ id: string; title: string; description: string }>;
 };
 
 const width = 680;
 const height = 520;
 
-export default function TernaryPlot({ profiles }: Props) {
+export default function TernaryPlot({ profiles, topics: topicDescriptions }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const [showLabels, setShowLabels] = useState(false);
 
@@ -53,6 +54,9 @@ export default function TernaryPlot({ profiles }: Props) {
       getTernaryPoint(profile, width, height),
     );
 
+    const legendX = width - 140;
+    const legendY = 16;
+
     svg
       .append('path')
       .attr('d', `M${vertices[0].x},${vertices[0].y}L${vertices[1].x},${vertices[1].y}L${vertices[2].x},${vertices[2].y}Z`)
@@ -70,10 +74,9 @@ export default function TernaryPlot({ profiles }: Props) {
       .attr('text-anchor', 'middle')
       .attr('font-size', 14)
       .attr('font-weight', 700)
+      .attr('font-family', "'Cormorant Garamond', serif")
       .attr('fill', '#1e1d1a')
       .text((vertex) => vertex.label);
-
-    const tooltip = d3.select('#ternary-tooltip');
 
     const groups = svg
       .append('g')
@@ -88,31 +91,57 @@ export default function TernaryPlot({ profiles }: Props) {
       .attr('fill', (point) => color(point.colorKey))
       .attr('stroke', '#1e1d1a')
       .attr('stroke-width', 0.8)
-      .on('mouseenter focus', (_event, point) => {
-        tooltip.style('opacity', '1').html(
-          `<strong>${escapeHtml(point.title)}</strong><span>${escapeHtml(point.location ?? point.colorKey)}</span>`,
-        );
+      .on('mouseenter focus', function () {
+        d3.select(this.parentNode).select('.ternary-label').style('opacity', 1);
       })
-      .on('mousemove', (event) => {
-        const bounds = svgElement.getBoundingClientRect();
-        tooltip
-          .style('left', `${event.clientX - bounds.left + 14}px`)
-          .style('top', `${event.clientY - bounds.top + 14}px`);
-      })
-      .on('mouseleave blur', () => {
-        tooltip.style('opacity', '0');
+      .on('mouseleave blur', function () {
+        d3.select(this.parentNode)
+          .select('.ternary-label')
+          .style('opacity', showLabels ? 1 : 0);
       });
 
-    groups
-      .append('text')
-      .attr('class', 'ternary-label')
-      .attr('x', 8)
-      .attr('y', 4)
-      .attr('font-size', 10)
-      .attr('fill', '#1e1d1a')
-      .attr('opacity', showLabels ? 1 : 0)
-      .text((point) => point.title);
-  }, [plottableProfiles, showLabels, topics]);
+    groups.each(function (point, i) {
+      const nearby = points.filter((p) => Math.hypot(p.x - point.x, p.y - point.y) < 1.5);
+      const indexInNearby = nearby.findIndex((p) => p.id === point.id);
+      const offsetY = (indexInNearby - (nearby.length - 1) / 2) * 8;
+
+      d3.select(this)
+        .append('text')
+        .attr('class', 'ternary-label')
+        .attr('x', 7)
+        .attr('y', offsetY)
+        .attr('font-size', 6)
+        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('fill', '#1e1d1a')
+        .attr('opacity', showLabels ? 1 : 0)
+        .attr('text-anchor', 'start')
+        .attr('dominant-baseline', 'middle')
+        .text((d) => d.title);
+    });
+
+    const legendGroup = svg.append('g').attr('class', 'legend-group');
+
+    topics.forEach((topic, index) => {
+      const topicData = topicDescriptions?.find((t) => t.id === topic || t.title === topic);
+      const y = legendY + index * 15;
+
+      legendGroup
+        .append('circle')
+        .attr('cx', legendX)
+        .attr('cy', y)
+        .attr('r', 2.5)
+        .attr('fill', d3.schemeTableau10[index % 10]);
+
+      legendGroup
+        .append('text')
+        .attr('x', legendX + 10)
+        .attr('y', y + 2.5)
+        .attr('font-size', '10px')
+        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('fill', '#1e1d1a')
+        .text(topicData?.title || topic);
+    });
+  }, [plottableProfiles, showLabels, topics, topicDescriptions]);
 
   return (
     <section className="viz-panel">
@@ -130,14 +159,6 @@ export default function TernaryPlot({ profiles }: Props) {
         <svg ref={svgRef} role="img" aria-label="PIP ternary plot" />
         <div id="ternary-tooltip" className="viz-tooltip" />
       </div>
-      <ul className="viz-legend">
-        {topics.map((topic, index) => (
-          <li key={topic}>
-            <span style={{ backgroundColor: d3.schemeTableau10[index % 10] }} />
-            {topic}
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
