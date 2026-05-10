@@ -15,7 +15,12 @@ export default function TernaryPlot({ profiles }: Props) {
   const [showLabels, setShowLabels] = useState(false);
 
   const plottableProfiles = useMemo(
-    () => profiles.filter((profile) => profile.socialChange),
+    () =>
+      profiles.filter((profile) => {
+        if (!profile.socialChange) return false;
+        const { systems, inner, cultural } = profile.socialChange;
+        return systems > 0 || inner > 0 || cultural > 0;
+      }),
     [profiles],
   );
   const topics = useMemo(
