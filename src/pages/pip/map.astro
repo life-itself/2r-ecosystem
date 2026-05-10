@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import CircularVis from '../../components/CircularVis';
+import TernaryPlot from '../../components/TernaryPlot';
+import Base from '../../layouts/Base.astro';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+import { isCuratedPipProfile } from '../../lib/profile';
+
+const profiles = (await getCollection('pip'))
+  .filter((profile) => isCuratedPipProfile(profile.data))
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'pip', id: profile.id, data: profile.data }),
+  )
+  .sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<Base
+  title="PIP Visual Maps | Second Renaissance Ecosystem"
+  description="Interactive PIP ecosystem maps showing social change orientation and topic groupings."
+>
+  <a class="back-link" href="/pip/">Back to PIP profiles</a>
+
+  <h1>PIP Visual Maps</h1>
+  <p class="lede">
+    Interactive maps of curated PIP organizations by social change orientation
+    and primary topic.
+  </p>
+
+  <div class="viz-grid">
+    <section>
+      <h2>Paradigmatic, Integrative, Pragmatic Orientation</h2>
+      <TernaryPlot profiles={profiles} client:load />
+    </section>
+
+    <section>
+      <h2>Organizations by Topic</h2>
+      <CircularVis profiles={profiles} client:load />
+    </section>
+  </div>
+</Base>

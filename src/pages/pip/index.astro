@@ -1,12 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import ProfileSearch from '../../components/ProfileSearch';
 import Base from '../../layouts/Base.astro';
-import { isCuratedPipProfile, normalizeProfile } from '../../lib/profile';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+import { isCuratedPipProfile } from '../../lib/profile';
 
 const profiles = (await getCollection('pip'))
   .filter((profile) => isCuratedPipProfile(profile.data))
   .map((profile) =>
-    normalizeProfile({ collection: 'pip', id: profile.id, data: profile.data }),
+    toInteractiveProfile({ collection: 'pip', id: profile.id, data: profile.data }),
   )
   .sort((a, b) => a.title.localeCompare(b.title));
 ---
@@ -15,84 +17,23 @@ const profiles = (await getCollection('pip'))
   title="PIP Profiles | Second Renaissance Ecosystem"
   description="PIP ecosystem profiles loaded from the root-level markdown collection."
 >
-  <section class="directory-header">
-    <div>
-      <p class="landing-kicker">PIP ecosystem map</p>
-      <h1>PIP Profiles</h1>
-      <p class="lede">
-        Paradigmatic, Integrative, and Pragmatic ecosystem profiles, filtered to
-        curated entries from the root-level markdown collection.
-      </p>
-    </div>
-
-    <div class="stat">
-      <strong>{profiles.length}</strong>
-      <span>curated profiles loaded</span>
-    </div>
-  </section>
-
-  <div class="directory-controls">
-    <label class="muted" for="directory-search">Search profiles</label>
-    <input id="directory-search" type="search" autocomplete="off" />
-    <span class="directory-count" data-directory-count>{profiles.length} shown</span>
-  </div>
-
-  <div class="profile-list" data-directory-list>
-    {
-      profiles.map((profile) => (
-        <a
-          class="profile-card"
-          href={`/pip/${profile.id}/`}
-          data-directory-item
-          data-search={[profile.title, profile.location, ...profile.tags, ...profile.secondaryTags]
-            .filter(Boolean)
-            .join(' ')
-            .toLowerCase()}
-        >
-          <div class={`profile-card-media ${profile.logo ? 'logo' : ''}`}>
-            {profile.logo ? (
-              <img src={profile.logo} alt={`${profile.title} logo`} loading="lazy" />
-            ) : (
-              <span class="muted">No image</span>
-            )}
-          </div>
-          <div class="profile-card-body">
-            <h2>{profile.title}</h2>
-            {profile.location && <p class="muted">{profile.location}</p>}
-            {profile.tags.length > 0 && (
-              <ul class="tag-list">
-                {profile.tags.slice(0, 3).map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </a>
-      ))
-    }
-  </div>
-  <p class="directory-empty" data-directory-empty>
-    No profiles match that search.
+  <h1>PIP Profiles</h1>
+  <p class="lede">
+    Paradigmatic, Integrative, and Pragmatic ecosystem profiles, filtered to
+    curated entries from the root-level markdown collection.
   </p>
 
-  <script>
-    const search = document.querySelector<HTMLInputElement>('#directory-search');
-    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-directory-item]'));
-    const count = document.querySelector<HTMLElement>('[data-directory-count]');
-    const empty = document.querySelector<HTMLElement>('[data-directory-empty]');
+  <div class="stat">
+    <strong>{profiles.length}</strong>
+    <span>curated profiles loaded</span>
+  </div>
 
-    search?.addEventListener('input', () => {
-      const query = search.value.trim().toLowerCase();
-      let visible = 0;
+  <a class="section-link" href="/pip/map/">Explore PIP visual maps</a>
 
-      for (const item of items) {
-        const matches = !query || item.dataset.search?.includes(query);
-        item.hidden = !matches;
-        if (matches) visible += 1;
-      }
-
-      if (count) count.textContent = `${visible} shown`;
-      if (empty) empty.dataset.visible = String(visible === 0);
-    });
-  </script>
+  <ProfileSearch
+    profiles={profiles}
+    primaryLabel="Topic"
+    secondaryLabel="Activity"
+    client:load
+  />
 </Base>
