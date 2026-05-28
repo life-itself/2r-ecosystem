@@ -19,6 +19,7 @@ const pages = defineCollection({
       'pip/topics/*.{md,mdx}',
       'pip/activitys/*.{md,mdx}',
       'cohere/*.{md,mdx}',
+      'ora/*.{md,mdx}',
     ],
     base: '.',
   }),

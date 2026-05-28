@@ -70,19 +70,34 @@ Create a report page at `/ora/` (or `/ora/report/`) based on the 2023 polycrisis
 
 The report documents the creation of a prototype directory mapping ~90 organizations (25 with detailed research) addressing polycrisis issues, primarily in the global south. Key challenge: limited consensus on what "polycrisis response" means. Methodology used two criteria: intersystemic analysis + intersystemic action (paradigmatic change affecting multiple systems).
 
-### Implementation Plan
+### Full scope (all phases)
 
-**Phase 1 (quick):** Copy the page content from research.lifeitself.org into `ora/index.md`, add proper frontmatter, link to the PDF. The page renders via the existing catch-all route — no new infrastructure needed.
+This is a significant body of work — not just one page. Full picture:
 
-**Phase 2 (later):** Inline the full report content from the Google Doc/PDF so it's readable on the page without downloading. This requires either:
-- Copying the text manually from the Google Doc
-- Or exporting the Doc to markdown
+**Phase 1 — Landing page (quick, do now):**
+- Create `ora/index.md` with intro content from research.lifeitself.org, frontmatter (title, description, authors, links to PDF)
+- Add `ora/*.{md,mdx}` to pages glob in `src/content.config.ts`
+- Renders at `/ora/` via existing catch-all
 
-**Steps:**
-1. Create `ora/` directory
-2. Create `ora/index.md` with frontmatter and content from the research.lifeitself.org page
-3. Add frontmatter: `title`, `description`, `created: 2023`, `authors: [Catherine Tran, Rufus Pollock]`, `links` pointing to the PDF
-4. Add `ora/*.{md,mdx}` to the pages glob in `src/content.config.ts`
-5. Verify renders at `/ora/`
+**Phase 2 — Full report as markdown:**
+- Export/copy the Google Doc report into `ora/report.md` (or inline in `ora/index.md`)
+- Currently the report is only accessible as a PDF download — making it readable on the page is a significant improvement for discoverability and linking
+- Requires: export from Google Doc → clean markdown, review/edit for quality
+- Renders at `/ora/report/` (or inlined at `/ora/`)
 
-**Future:** ORA profiles directory — migrate ORA org data into `ora/profiles/` (tracked in design doc as future work).
+**Phase 3 — ORA profiles directory:**
+- The prototype directory identified ~90 organizations (25 with detailed research)
+- Migrate org data into `ora/profiles/` as markdown files (parallel to `pip/profiles/`, `cohere/profiles/`)
+- Add `ora` content collection to `src/content.config.ts`
+- Build directory page at `/ora/directory/`
+- This is the biggest piece — requires the raw org data (currently unclear where it lives; may be in a spreadsheet or Airtable)
+
+**Phase 4 — Visualization:**
+- ORA has its own mapping/visualization work (different from PIP CircularVis/TernaryPlot)
+- Needs investigation: what viz existed, where source lives, how to restore/embed
+
+### Immediate steps (Phase 1 only)
+
+1. Create `ora/` directory and `ora/index.md`
+2. Add `ora/*.{md,mdx}` to pages glob
+3. Verify renders at `/ora/`
