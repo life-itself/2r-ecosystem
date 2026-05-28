@@ -1,7 +1,9 @@
 ---
-title: Sensemaking
+title: Mapping as Sensemaking
+created: 2023-12-19
 ---
-## The current focus of our mapping is ***sensemaking***. 
+
+The current focus of our mapping is ***sensemaking***.
 
 Rather than, for example, catalysing connections in the field. (This can come later through complementary activities.)
 

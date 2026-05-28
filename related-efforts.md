@@ -1,9 +1,10 @@
 ---
 created: 2021-10-03
 ---
+
 # Related Efforts
 
-Here we list some related efforts we have come across.
+Here we list some related mapping efforts we have come across.
 
 Related efforts come in two flavors. First, those which are about mapping *different (but related) fields*. Second, those that are mapping a similar field but in a *different way*. Any given effort is related by some combination of these.
 
