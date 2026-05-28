@@ -1,0 +1,20 @@
+---
+import { getEntry, render } from 'astro:content';
+import PipCircularVis from '../../components/pip/PipCircularVis.astro';
+import PipTernaryPlot from '../../components/pip/PipTernaryPlot.astro';
+import Prose from '../../layouts/Prose.astro';
+
+const entry = await getEntry('pages', 'pip');
+if (!entry) throw new Error('pip not found in pages collection');
+
+const { Content } = await render(entry);
+---
+
+<Prose
+  title={entry.data.title}
+  description={entry.data.description}
+  created={entry.data.created}
+  links={entry.data.links}
+>
+  <Content components={{ CircularVis: PipCircularVis, TernaryPlot: PipTernaryPlot }} />
+</Prose>

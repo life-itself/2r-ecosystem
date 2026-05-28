@@ -1,0 +1,24 @@
+---
+import { readFileSync } from 'fs';
+import { getCollection } from 'astro:content';
+import { parse } from 'yaml';
+import TernaryPlot from '../TernaryPlot';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+import { isCuratedPipProfile } from '../../lib/profile';
+
+const profiles = (await getCollection('pip'))
+  .filter((p) => isCuratedPipProfile(p.data))
+  .map((p) => toInteractiveProfile({ collection: 'pip', id: p.id, data: p.data }));
+
+const topicIds = ['arts', 'community', 'development', 'ecology', 'governance', 'politics', 'spirituality', 'tech', 'wellbeing', 'work'];
+const topics = topicIds
+  .map((id) => {
+    const content = readFileSync(`pip/topics/${id}.md`, 'utf-8');
+    const [, frontmatter, body] = content.split('---');
+    const data = parse(frontmatter);
+    return { id, title: data.title, description: body.trim() };
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<TernaryPlot profiles={profiles} topics={topics} client:load />

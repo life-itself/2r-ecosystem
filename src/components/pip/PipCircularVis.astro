@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import CircularVis from '../CircularVis';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+import { isCuratedPipProfile } from '../../lib/profile';
+
+const profiles = (await getCollection('pip'))
+  .filter((p) => isCuratedPipProfile(p.data))
+  .map((p) => toInteractiveProfile({ collection: 'pip', id: p.id, data: p.data }));
+---
+
+<CircularVis profiles={profiles} client:load />

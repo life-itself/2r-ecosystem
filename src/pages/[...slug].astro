@@ -5,8 +5,8 @@ import Prose from '../layouts/Prose.astro';
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages.map((page) => {
-    // "pip/index" → "pip", "foo/index" → "foo", "about" → "about"
-    const slug = page.id.replace(/\/index$/, '') || undefined;
+    // Astro already strips /index from IDs; empty string (root index) → undefined
+    const slug = page.id || undefined;
     return {
       params: { slug },
       props: { page },
