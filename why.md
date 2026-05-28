@@ -3,6 +3,9 @@ title: Why Map? Why this Ecosystem Mapping Project?
 created: 2020-06-03
 ---
 
+*Also published on the [Life Itself blog](https://lifeitself.org/blog/2020-06-why-map-ecosystem-mapping).*
+
+
 Short answer: mapping is a first step in building an emerging field/movement and we want to build a field/movement for inner-led paradigmatic change -- for a second renaissance and awakening societies!
 
 More near-term: Establishing a field brings credibility. It means having a name, having an area with well defined participants etc. Right now, we don't even have a common agreed name or key principles for what defines this emerging movement. That makes it hard to "find the others", to get resources, to be seen from outside the area etc.
