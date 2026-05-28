@@ -490,6 +490,112 @@ const {
         line-height: 1.4;
       }
 
+      /* Prose layout */
+      .prose-article {
+        max-width: 780px;
+      }
+
+      .prose-header {
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .prose-title {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+      }
+
+      .prose-lede {
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 1.2rem;
+        max-width: 640px;
+      }
+
+      .prose-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .prose-meta-sep {
+        color: var(--border);
+      }
+
+      .prose-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 24px 0 0;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-decoration: none;
+        background: var(--surface);
+      }
+
+      .button:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .button.primary {
+        background: var(--text);
+        border-color: var(--text);
+        color: var(--background);
+      }
+
+      .button.primary:hover {
+        background: var(--accent-strong);
+        border-color: var(--accent-strong);
+      }
+
+      .prose-body h2 {
+        margin-top: 40px;
+        font-size: 1.5rem;
+      }
+
+      .prose-body h3 {
+        margin-top: 28px;
+        font-size: 1.15rem;
+      }
+
+      .prose-body p {
+        line-height: 1.7;
+      }
+
+      .prose-body ul,
+      .prose-body ol {
+        max-width: 720px;
+        line-height: 1.7;
+      }
+
+      .prose-body blockquote {
+        margin-left: 0;
+        padding-left: 18px;
+        border-left: 3px solid var(--border);
+        color: var(--muted);
+      }
+
+      .prose-body pre {
+        overflow-x: auto;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--surface);
+        font-size: 0.88rem;
+      }
+
       @media (max-width: 620px) {
         .nav {
           align-items: flex-start;

@@ -1,0 +1,53 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  created?: string;
+  authors?: string[];
+  links?: Array<{ label: string; href: string; primary?: boolean }>;
+}
+
+const { title = 'Untitled', description, created, authors, links } = Astro.props;
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Base title={title} description={description}>
+  <article class="prose-article">
+    <header class="prose-header">
+      <h1 class="prose-title">{title}</h1>
+      {description && <p class="prose-lede">{description}</p>}
+      {
+        (created || (authors && authors.length > 0)) && (
+          <p class="prose-meta">
+            {authors && authors.length > 0 && <span>{authors.join(', ')}</span>}
+            {created && authors && authors.length > 0 && <span class="prose-meta-sep">·</span>}
+            {created && <time datetime={created}>{formatDate(created)}</time>}
+          </p>
+        )
+      }
+      {
+        links && links.length > 0 && (
+          <div class="prose-actions">
+            {links.map((link) => (
+              <a class={`button ${link.primary ? 'primary' : ''}`} href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </header>
+    <div class="prose-body">
+      <slot />
+    </div>
+  </article>
+</Base>
