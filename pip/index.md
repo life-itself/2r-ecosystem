@@ -1,11 +1,14 @@
 ---
-title: Mapping an Emerging Ecosystem of Paradigmatic, Integrative, Pragmatic Changemakers
-syntaxMode: mdx
+title: Mapping an Emerging Ecosystem
+description: A research report mapping over 200 organizations taking paradigmatic, integrative, and pragmatic approaches to social change.
+created: 2022-01-01
+links:
+  - label: Browse the Directory
+    href: /pip/directory/
+    primary: true
+  - label: View Visual Maps
+    href: /pip/map/
 ---
-
-# Mapping an Emerging Ecosystem
-
-*Paradigmatic, Integrative, Pragmatic*
 
 ## Introduction
 
@@ -29,8 +32,7 @@ Our work here is still early-stage and limited by both resources and our own kno
 
 This visualization maps organizations in the directory based on their primary topic. Click to zoom in or out. Hover over a circle to see its name.
 
-> [!note] CircularVis Visualization
-> Interactive D3 visualization to be re-added
+*[View the interactive topic map →](/pip/map/)*
 
 We defined 9 topics, each of which is represented by a circle within the broader circle/topic of social change. The topics are: Arts & Culture, Community, Development & Growth, Ecology & Environment, Future of Work, Governance & Institutions, Politics & Economics, Spirituality & Religion, and Wellbeing & Health. Read more about the visualization and the topics in the [full report](https://drive.google.com/file/d/1y-DdWVe6ak-6yHVHFZkoEhLhTqty3QzY/view?usp=sharing).
 
@@ -76,8 +78,7 @@ Participants are actively engaging with wider society for the purposes of societ
 
 This visualization maps organizations in the directory based on their approach to social change. Hover over the dots to see organization information.
 
-> [!note] TernaryPlot Visualization
-> Interactive D3 visualization to be re-added
+*[View the interactive social change map →](/pip/map/)*
 
 The three broad orientations we have mapped are inner, cultural, and systems change:
 
@@ -91,22 +92,4 @@ Read more about the visualization in the [full report](https://drive.google.com/
 
 Explore the directory of organizations, communities, and initiatives who are active in or close to the ecosystem.
 
-```base
-filters:
-  and:
-    - file.inFolder("pip/profiles")
-properties:
-  note.title:
-    displayName: Title
-  note.started:
-    displayName: Started
-views:
-  - type: cards
-    name: Cards
-    order:
-      - title
-      - started
-    image: note.image
-    cardSize: 190
-    imageAspectRatio: 1
-```
+[Browse the full directory →](/pip/directory/)
