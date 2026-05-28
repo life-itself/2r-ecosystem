@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import Prose from '../layouts/Prose.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => {
+    // "pip/index" → "pip", "foo/index" → "foo", "about" → "about"
+    const slug = page.id.replace(/\/index$/, '') || undefined;
+    return {
+      params: { slug },
+      props: { page },
+    };
+  });
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<Prose
+  title={page.data.title}
+  description={page.data.description}
+  created={page.data.created}
+  authors={page.data.authors}
+  links={page.data.links}
+>
+  <Content />
+</Prose>
