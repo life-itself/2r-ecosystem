@@ -705,3 +705,18 @@ Manual spot-checks:
 | `/pip/map/` | CircularVis + TernaryPlot standalone |
 | `/pip/[id]/` | Individual profile page with back link to `/pip/directory/` |
 | `/cohere/` | Unaffected |
+
+---
+
+## Follow-on: UX/Design Pass (deferred)
+
+**Status:** Needed — functionality is working but visual quality is poor. Spacing, typography, font sizing, and layout need a proper pass across: Prose layout (report pages), PIP essay hero, directory pages, profile cards, nav.
+
+Do as one dedicated pass rather than incremental tweaks. Areas to cover:
+- Prose header: title size, lede sizing, date/meta line, button styles
+- Prose body: line height, paragraph spacing, heading rhythm, max-width
+- Embedded viz: sizing, spacing around CircularVis and TernaryPlot within essay flow
+- Nav: link spacing, active state, mobile
+- Overall: colour, spacing tokens, font choices
+
+Track as a separate plan/issue when ready to start.

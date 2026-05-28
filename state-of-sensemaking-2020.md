@@ -1,11 +1,10 @@
 ---
 title: "State of Sensemaking: Mapping an Emerging Ecosystem (2020)"
-created: 2020-09
-contributors:
-  - rufuspollock
-  - theo-cox
-  - elisalifeitself
-image: /assets/Social_Change_Ecosystem-1024x626.png
+description: "The first phase of Life Itself's ecosystem mapping work — research questions, analysis, and a report on an emerging ecosystem of change agents."
+created: "2020-09-01"
+authors:
+  - Rufus Pollock
+  - Theo Cox
 ---
 
 This page documents the first phase (2019-2020) of Life Itself's ecosystem mapping work, including:
@@ -15,7 +14,7 @@ This page documents the first phase (2019-2020) of Life Itself's ecosystem mappi
 3. Report
 4. Preliminary map
 
-![[../assets/Social_Change_Ecosystem-1024x626.png]]
+![Social Change Ecosystem Map](/assets/Social_Change_Ecosystem-1024x626.png)
 
 ## 1. Background
 
@@ -64,7 +63,7 @@ In addition, exploring the space can help to establish credibility for the peopl
 
 ## 3. Report
 
-This report is the first output from Life Itself's ongoing efforts to [[../ecosystem|map the ecosystem]] in which we exist. The ecosystem is still emerging and ill-defined. Reflecting this, there is no clear name for it and we have settled for now on the “State of Sensemaking”.
+This report is the first output from Life Itself's ongoing efforts to map the ecosystem in which we exist. The ecosystem is still emerging and ill-defined. Reflecting this, there is no clear name for it and we have settled for now on the “State of Sensemaking”.
 
 We emphasise that our research here is clearly highly preliminary and was limited by both resources and our own knowledge. Based on snowball sampling starting from our contacts it necessarily and obviously display clear biases e.g. geographically to Europe and UK versus the rest of the world, thematically in terms of areas chosen etc.
 
