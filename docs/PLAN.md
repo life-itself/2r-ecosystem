@@ -80,12 +80,3 @@ See: `docs/second-renaissance-ecosystem-placement-design-2026-04-14.md`
 | `docs/plans/2026-05-28-markdown-pages-and-pip-essay.md` | Markdown rendering system, PIP essay, inline viz — **complete** |
 | `docs/plans/2026-05-29-cohere-and-ora-next-steps.md` | Cohere+ landing page + map, ORA report + profiles |
 
----
-
-## Issues
-
-| # | Title | Status |
-|---|---|---|
-| [#2](https://github.com/life-itself/2r-ecosystem/issues/2) | Phase 2: content tidy | Nearly done — only `why.md` migration remains |
-| [#5](https://github.com/life-itself/2r-ecosystem/issues/5) | Epic: Astro migration | In progress |
-| [#6](https://github.com/life-itself/2r-ecosystem/issues/6) | Visual design and styling pass | Not started — matches UX pass above |
