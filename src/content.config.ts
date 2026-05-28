@@ -11,21 +11,14 @@ const cohere = defineCollection({
 
 const pages = defineCollection({
   loader: glob({
+    // Explicit shallow patterns avoid picomatch negation-array issues with
+    // dot-directories (.astro/) that the glob-loader watcher uses internally.
     pattern: [
-      '**/*.{md,mdx}',
-      '!pip/profiles/**',
-      '!cohere/profiles/**',
-      '!node_modules/**',
-      '!docs/**',
-      '!src/**',
-      '!public/**',
-      '!dist/**',
-      '!scripts/**',
-      '!templates/**',
-      '!assets/**',
-      '!index.md',
-      '!README.md',
-      '!LICENSE.md',
+      '*.{md,mdx}',
+      'pip/*.{md,mdx}',
+      'pip/topics/*.{md,mdx}',
+      'pip/activitys/*.{md,mdx}',
+      'cohere/*.{md,mdx}',
     ],
     base: '.',
   }),
