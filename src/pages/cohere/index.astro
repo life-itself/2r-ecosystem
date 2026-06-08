@@ -14,17 +14,21 @@ const profiles = (await getCollection('cohere'))
 <Base
   title="Cohere+ Profiles | Second Renaissance Ecosystem"
   description="Cohere+ ecosystem profiles loaded from the root-level markdown collection."
+  active="cohere"
 >
-  <h1>Cohere+ Profiles</h1>
-  <p class="lede">
-    Project profiles from the Cohere+ mapping, loaded from the existing
-    root-level markdown collection.
-  </p>
-
-  <div class="stat">
-    <strong>{profiles.length}</strong>
-    <span>profiles loaded</span>
-  </div>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Ecosystem</a>
+    <span class="sl">/</span>
+    <span>Cohere+</span>
+  </nav>
+  <header class="page-head">
+    <div class="sec-num">COHERE+ · {profiles.length} PROFILES</div>
+    <h1>Browse Cohere+ profiles.</h1>
+    <p>
+      Project profiles from the Cohere+ mapping, loaded from the existing
+      root-level markdown collection.
+    </p>
+  </header>
 
   <ProfileSearch
     profiles={profiles}

@@ -1,3 +1,37 @@
+# Ecosystem Site Redesign — 2026-06-08
+
+**TL;DR:** The site has been redesigned around the Second Renaissance Ecosystem handoff: warmer editorial typography, research-instrument UI chrome, a new landing page, redesigned directory browsing, and shared navigation/footer components across the Astro site.
+
+This brings the live Astro implementation much closer to the `sandbox/design_handoff_2r_ecosystem` prototype while keeping the existing PIP and Cohere+ content collections as the source of truth.
+
+### Design system and global chrome
+
+- Added the handoff theme tokens as a dedicated shared stylesheet with the locked paper mood, Newsreader + IBM Plex Mono type system, terracotta accent, hairline rules, and soft corners
+- Rebuilt the base layout to set the required root theme attributes and load the production font pair
+- Added shared top bar and footer components with the new Second Renaissance / Ecosystem mark, sticky translucent navigation, active section states, mobile menu, and research-site footer columns
+
+### Landing page
+
+- Rebuilt the homepage around the redesign: editorial hero, PIP framing, mapping collection cards, directory preview, and reading list
+- Added a deterministic SVG network figure as a quiet reference plate in the hero
+- Homepage counts now come from the real PIP and Cohere+ collections rather than prototype sample data
+
+### Directory experience
+
+- Reworked the shared profile search component into a two-column directory interface with sticky facets, search, sort, result counts, and responsive card grids
+- Directory cards now preserve profile imagery using image-backed card backgrounds with a paper gradient overlay, plus logo/monogram fallbacks when images are missing
+- Added keyboard `/` search focus and mapping/topic/activity filtering across the existing content data
+
+### Profile and prose pages
+
+- Updated PIP and Cohere+ pages to inherit the new chrome and active navigation states
+- Existing profile and markdown prose pages now use the redesigned typography, metadata cards, buttons, and reading styles
+
+### Verification
+
+- Updated styling tests to cover the new design-system split and image-backed directory cards
+- Full test suite and Astro build pass locally
+
 # Ecosystem Site Update — 2026-05-29
 
 **TL;DR:** Big step forward on [ecosystem.secondrenaissance.net](https://ecosystem.secondrenaissance.net) — the PIP mapping report is properly restored with interactive visualisations embedded inline, all report-style pages now render correctly, and the site's scope and structure is clarified.

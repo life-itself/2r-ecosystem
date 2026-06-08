@@ -1,72 +1,237 @@
 ---
+import { getCollection } from 'astro:content';
+import NetworkFigure from '../components/NetworkFigure.astro';
+import SectionHead from '../components/SectionHead.astro';
 import Base from '../layouts/Base.astro';
+import { toInteractiveProfile } from '../lib/interactive-server';
+import { isCuratedPipProfile } from '../lib/profile';
+
+const pipProfiles = (await getCollection('pip'))
+  .filter((profile) => isCuratedPipProfile(profile.data))
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'pip', id: profile.id, data: profile.data }),
+  )
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const cohereProfiles = (await getCollection('cohere'))
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'cohere', id: profile.id, data: profile.data }),
+  )
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const allProfiles = [...pipProfiles, ...cohereProfiles];
+const topics = new Set(allProfiles.flatMap((profile) => profile.facetPrimary));
+const activities = new Set(allProfiles.flatMap((profile) => profile.facetSecondary));
+const previewProfiles = pipProfiles.slice(0, 12);
+
+const reports = [
+  {
+    href: '/why/',
+    title: 'Why ecosystem mapping?',
+    description: 'The purpose, boundaries, and research posture behind this open field map.',
+    meta: 'Essay · 6 min',
+  },
+  {
+    href: '/sensemaking/',
+    title: 'State of sensemaking',
+    description: 'A reading route into collective intelligence, systems thinking, and social change.',
+    meta: 'Report · 12 min',
+  },
+  {
+    href: '/related-efforts/',
+    title: 'Related mapping efforts',
+    description: 'Adjacent directories, research projects, and ecosystem maps in the field.',
+    meta: 'Index · 8 min',
+  },
+];
+
+function mono(profile: (typeof allProfiles)[number]) {
+  return profile.title
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0]?.toUpperCase())
+    .join('');
+}
 ---
 
 <Base
   title="Second Renaissance Ecosystem Mapping"
   description="Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change."
 >
-  <section class="landing-hero">
-    <div>
-      <p class="landing-kicker">Ecosystem mapping research</p>
-      <h1>Second Renaissance Ecosystem Mapping</h1>
-      <p class="lede">
-        Research, profiles, and visualizations mapping an emerging ecosystem of
-        change agents working on paradigmatic, integrative, and pragmatic
-        approaches to social change.
-      </p>
-      <div class="landing-actions">
-        <a class="button primary" href="/pip/">PIP Mapping</a>
-        <a class="button" href="/pip/directory/">Browse Directory</a>
-      </div>
-    </div>
-    <aside class="landing-panel">
-      <img
-        src="/assets/img/ecosystem/second-renaissance-ecosystem-map.webp"
-        alt="Second Renaissance ecosystem map"
-      />
-      <div class="landing-panel-body">
-        <p>
-          Reports, profiles, directories, and visualizations from ecosystem
-          mapping work across the Second Renaissance field.
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="label tick">Ecosystem mapping · open research</p>
+        <h1>Mapping a Second Renaissance.</h1>
+        <p class="lead">
+          Research, profiles, and visual instruments for an emerging ecosystem
+          of change agents working across paradigmatic, integrative, and
+          pragmatic approaches to social change.
         </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="/pip/directory/">
+            Browse the directory <span class="arw" aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn-ghost" href="/pip/map/">Explore the map</a>
+        </div>
+        <div class="meta-strip" aria-label="Ecosystem statistics">
+          <div class="m">
+            <div class="n">{allProfiles.length}</div>
+            <div class="l">Profiles</div>
+          </div>
+          <div class="m">
+            <div class="n">2</div>
+            <div class="l">Mappings</div>
+          </div>
+          <div class="m">
+            <div class="n">{topics.size}</div>
+            <div class="l">Topics</div>
+          </div>
+          <div class="m">
+            <div class="n">{activities.size}</div>
+            <div class="l">Activities</div>
+          </div>
+        </div>
       </div>
-    </aside>
+      <NetworkFigure />
+    </div>
   </section>
 
-  <div class="section-heading">
-    <div>
-      <p class="landing-kicker">Mappings</p>
-      <h2>Browse the collections</h2>
+  <section class="pip">
+    <SectionHead
+      number="01"
+      label="Framing"
+      title="Paradigmatic, integrative, pragmatic."
+      description="The PIP frame keeps multiple forms of transformation visible without forcing them into one method or ideology."
+    />
+    <div class="pip-grid">
+      <div class="pip-cell">
+        <div class="n">P / 01</div>
+        <h3>Paradigmatic</h3>
+        <p>
+          Work that shifts worldview, meaning, culture, and the premises from
+          which social change becomes thinkable.
+        </p>
+      </div>
+      <div class="pip-cell">
+        <div class="n">I / 02</div>
+        <h3>Integrative</h3>
+        <p>
+          Work that connects domains, practices, communities, and scales so the
+          field can act with more coherence.
+        </p>
+      </div>
+      <div class="pip-cell">
+        <div class="n">P / 03</div>
+        <h3>Pragmatic</h3>
+        <p>
+          Work that builds institutions, tools, projects, and concrete pathways
+          for social and ecological transition.
+        </p>
+      </div>
     </div>
-    <p>
-      Separate mapping efforts, each with profiles, a directory, and visualizations.
-    </p>
-  </div>
-  <div class="grid">
-    <a class="card" href="/pip/">
-      <img
-        src="/assets/img/ecosystem/second-renaissance-ecosystem-map.webp"
-        alt="PIP ecosystem map"
-      />
-      <div class="card-body">
+  </section>
+
+  <section class="collections">
+    <SectionHead
+      number="02"
+      label="Mappings"
+      title="Browse the collections."
+      description="Two complementary views into organisations, initiatives, and research across the field."
+    />
+    <div class="coll-grid">
+      <a class="coll" href="/pip/">
+        <div class="top">
+          <span class="tag">PIP ecosystem</span>
+          <span class="count">{pipProfiles.length}</span>
+        </div>
         <h3>PIP Ecosystem Map</h3>
         <p>
-          Profiles of organizations and initiatives taking paradigmatic,
+          Profiles of organisations and initiatives taking paradigmatic,
           integrative, and pragmatic approaches to social change.
         </p>
-      </div>
-    </a>
-
-    <a class="card" href="/cohere/">
-      <img src="/assets/mandala-systems-change.png" alt="Cohere+ profiles" />
-      <div class="card-body">
+        <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
+      </a>
+      <a class="coll" href="/cohere/">
+        <div class="top">
+          <span class="tag">Cohere+</span>
+          <span class="count">{cohereProfiles.length}</span>
+        </div>
         <h3>Cohere+ Profiles</h3>
         <p>
-          Profiles of projects and organizations in the broader ecosystem of
+          A broader profile set documenting projects and organisations in
           transformative social change.
         </p>
-      </div>
-    </a>
-  </div>
+        <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="directory">
+    <SectionHead
+      number="03"
+      label="Directory"
+      title="Sample the field."
+      description="A curated preview from the PIP directory. Use the full directory for search and faceted browsing."
+    />
+    <div class="filters" aria-hidden="true">
+      <span class="flabel">Topics</span>
+      {
+        [...topics].slice(0, 5).map((topic) => (
+          <span class="chip">
+            {topic}
+          </span>
+        ))
+      }
+    </div>
+    <div class="org-grid">
+      {
+        previewProfiles.map((profile) => (
+          <a class="org" href={profile.href}>
+            <span class="logo">{mono(profile)}</span>
+            <div>
+              {profile.facetPrimary[0] && <div class="topic">{profile.facetPrimary[0]}</div>}
+              <h4>{profile.title}</h4>
+              {profile.facetSecondary.length > 0 && (
+                <div class="acts">
+                  {profile.facetSecondary.slice(0, 3).map((activity) => (
+                    <span class="act">{activity}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            {profile.location && <div class="loc">{profile.location}</div>}
+          </a>
+        ))
+      }
+    </div>
+    <div class="dir-foot">
+      <span class="ct">Showing {previewProfiles.length} of {pipProfiles.length} PIP organisations</span>
+      <a class="btn btn-ghost" href="/pip/directory/">Full directory</a>
+    </div>
+  </section>
+
+  <section class="reports">
+    <SectionHead
+      number="04"
+      label="Reading"
+      title="Read the frame."
+      description="Essays and notes that explain the research context around the ecosystem map."
+    />
+    <div class="rlist">
+      {
+        reports.map((report, index) => (
+          <a class="r" href={report.href}>
+            <span class="rn">{String(index + 1).padStart(3, '0')}</span>
+            <span>
+              <span class="rt">{report.title}</span>
+              <span class="rd">{report.description}</span>
+            </span>
+            <span class="rm">{report.meta}</span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </Base>

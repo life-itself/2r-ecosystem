@@ -16,20 +16,23 @@ const profiles = (await getCollection('pip'))
 <Base
   title="PIP Directory | Second Renaissance Ecosystem"
   description="Directory of organizations taking paradigmatic, integrative, and pragmatic approaches to social change."
+  active="directory"
 >
-  <a class="back-link" href="/pip/">← PIP Mapping</a>
-  <h1>PIP Directory</h1>
-  <p class="lede">
-    Paradigmatic, Integrative, and Pragmatic — a directory of organizations
-    and initiatives active in this emerging ecosystem.
-  </p>
-
-  <div class="stat">
-    <strong>{profiles.length}</strong>
-    <span>curated profiles loaded</span>
-  </div>
-
-  <a class="section-link" href="/pip/map/">Explore PIP visual maps</a>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Ecosystem</a>
+    <span class="sl">/</span>
+    <a href="/pip/">PIP</a>
+    <span class="sl">/</span>
+    <span>Directory</span>
+  </nav>
+  <header class="page-head">
+    <div class="sec-num">DIRECTORY · {profiles.length} PROFILES</div>
+    <h1>Search the field.</h1>
+    <p>
+      Paradigmatic, integrative, and pragmatic organisations and initiatives
+      active in this emerging ecosystem.
+    </p>
+  </header>
 
   <ProfileSearch
     profiles={profiles}

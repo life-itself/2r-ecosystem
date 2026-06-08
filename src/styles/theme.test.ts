@@ -13,20 +13,29 @@ describe('theme styling architecture', () => {
   });
 
   test('defines shared Second Renaissance design tokens', () => {
-    const css = read('src/styles/global.css');
+    const css = read('src/styles/theme.css');
 
-    expect(css).toContain('--color-background: #f8f4ee;');
-    expect(css).toContain('--color-accent: #ad2831;');
-    expect(css).toContain('--font-heading:');
-    expect(css).toContain('--font-body:');
+    expect(css).toContain('--paper:    oklch(0.977 0.008 82);');
+    expect(css).toContain('--accent:   oklch(0.575 0.122 46);');
+    expect(css).toContain('--display:"Newsreader"');
+    expect(css).toContain('--mono:"IBM Plex Mono"');
   });
 
   test('styles the core catalog surfaces', () => {
+    const css = `${read('src/styles/theme.css')}\n${read('src/styles/global.css')}`;
+
+    expect(css).toContain('.hero-grid');
+    expect(css).toContain('.profile-card');
+    expect(css).toContain('.dir-layout');
+    expect(css).toContain('.profile-body');
+  });
+
+  test('uses profile images as directory card backgrounds', () => {
+    const component = read('src/components/ProfileSearch.tsx');
     const css = read('src/styles/global.css');
 
-    expect(css).toContain('.landing-hero');
-    expect(css).toContain('.profile-card');
-    expect(css).toContain('.directory-controls');
-    expect(css).toContain('.profile-body');
+    expect(component).toContain('--card-image');
+    expect(css).toContain('var(--card-image)');
+    expect(css).toContain('.profile-card.org.has-image');
   });
 });

@@ -7,9 +7,10 @@ interface Props {
   created?: string;
   authors?: string[];
   links?: Array<{ label: string; href: string; primary?: boolean }>;
+  active?: 'pip' | 'cohere' | 'directory' | 'reports';
 }
 
-const { title = 'Untitled', description, created, authors, links } = Astro.props;
+const { title = 'Untitled', description, created, authors, links, active } = Astro.props;
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', {
@@ -20,7 +21,7 @@ function formatDate(iso: string) {
 }
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} active={active}>
   <article class="prose-article">
     <header class="prose-header">
       <h1 class="prose-title">{title}</h1>

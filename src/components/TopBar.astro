@@ -1,0 +1,103 @@
+---
+interface Props {
+  active?: 'pip' | 'cohere' | 'directory' | 'reports';
+}
+
+const { active } = Astro.props;
+
+const links = [
+  { key: 'pip', label: 'PIP', href: '/pip/' },
+  { key: 'cohere', label: 'Cohere+', href: '/cohere/' },
+  { key: 'directory', label: 'Directory', href: '/pip/directory/' },
+  { key: 'reports', label: 'Reports', href: '/related-efforts/' },
+];
+---
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Second Renaissance Ecosystem home">
+      <span class="mk" aria-hidden="true"></span>
+      <b>Second Renaissance <small>/ Ecosystem</small></b>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      {
+        links.map((link) => (
+          <a
+            class={active === link.key ? 'here' : undefined}
+            href={link.href}
+            aria-current={active === link.key ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <span class="sep" aria-hidden="true"></span>
+      <a class="ext" href="https://secondrenaissance.net/">SR Home</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-controls="mobile-nav" aria-expanded="false">
+      Menu
+    </button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>
+    {
+      links.map((link) => (
+        <a
+          class={active === link.key ? 'here' : undefined}
+          href={link.href}
+          aria-current={active === link.key ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a class="ext" href="https://secondrenaissance.net/">SR Home</a>
+  </nav>
+</header>
+
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>('.menu-btn');
+  const mobileNav = document.querySelector<HTMLElement>('#mobile-nav');
+
+  menuButton?.addEventListener('click', () => {
+    if (!mobileNav) return;
+    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!isOpen));
+    mobileNav.hidden = isOpen;
+  });
+</script>
+
+<style>
+  .mobile-nav {
+    border-top: 1px solid var(--line);
+    background: color-mix(in oklab, var(--paper) 92%, transparent);
+    padding: 10px var(--gutter) 14px;
+  }
+
+  .mobile-nav a {
+    display: block;
+    border-radius: 7px;
+    color: var(--muted);
+    font-family: var(--label);
+    font-size: .78rem;
+    letter-spacing: .02em;
+    padding: 10px 11px;
+  }
+
+  .mobile-nav a.here,
+  .mobile-nav a:hover,
+  .mobile-nav a:focus-visible {
+    background: var(--surface-2);
+    color: var(--ink);
+  }
+
+  .mobile-nav a.ext::after {
+    content: " ↗";
+    color: var(--faint);
+  }
+
+  @media (min-width: 861px) {
+    .mobile-nav {
+      display: none;
+    }
+  }
+</style>
