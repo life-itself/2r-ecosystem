@@ -299,6 +299,7 @@ section{position:relative;}
 
 /* ── Reports ─────────────────────────────────────────────── */
 .reports{padding:clamp(40px,5vw,72px) 0 clamp(54px,7vw,92px);}
+.rgroup-label{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin:2rem 0 0;}
 .rlist{border-top:1px solid var(--line);}
 .r{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:baseline;
   padding:22px 4px;border-bottom:1px solid var(--line);transition:padding-left .2s,background .2s;}

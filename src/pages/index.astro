@@ -29,7 +29,13 @@ const topics = new Set(allProfiles.flatMap((profile) => profile.facetPrimary));
 const activities = new Set(allProfiles.flatMap((profile) => profile.facetSecondary));
 const previewProfiles = pipProfiles.slice(0, 12);
 
-const reports = [
+const mappingReports = [
+  {
+    href: '/state-of-sensemaking-2020/',
+    title: 'State of Sensemaking',
+    description: 'The first phase of Life Itself\'s ecosystem mapping: research questions, analysis, and a report on an emerging ecosystem of change agents.',
+    meta: 'Report · 2020',
+  },
   {
     href: '/pip/',
     title: 'PIP Mapping Report',
@@ -43,22 +49,43 @@ const reports = [
     meta: 'Report · 2023',
   },
   {
+    href: '/cohere/',
+    title: 'Cohere+ Mapping',
+    description: 'Profiles and analysis from the EU Erasmus+-funded mapping of paradigmatic social change organisations in Europe.',
+    meta: 'Report · 2022–2025',
+  },
+  {
+    href: 'https://secondrenaissance.net/map',
+    title: 'Second Renaissance Map',
+    description: 'An interactive map of the second renaissance ecosystem.',
+    meta: 'Map · external',
+  },
+];
+
+const essays = [
+  {
     href: '/why/',
     title: 'Why ecosystem mapping?',
     description: 'The purpose, boundaries, and research posture behind this open field map.',
-    meta: 'Essay · 6 min',
+    meta: 'Essay',
   },
   {
     href: '/sensemaking/',
-    title: 'State of sensemaking',
-    description: 'A reading route into collective intelligence, systems thinking, and social change.',
-    meta: 'Report · 12 min',
+    title: 'Mapping as Sensemaking',
+    description: 'Our methodology: wiki over database, quality over categorisation, share early and often.',
+    meta: 'Note',
+  },
+  {
+    href: 'https://lifeitself.org/blog/mapping-for-emergence',
+    title: 'Mapping for Emergence',
+    description: 'How ecosystem mapping supports collective intelligence and field-building.',
+    meta: 'Essay · 2021 · external',
   },
   {
     href: '/related-efforts/',
     title: 'Related mapping efforts',
     description: 'Adjacent directories, research projects, and ecosystem maps in the field.',
-    meta: 'Index · 8 min',
+    meta: 'Index',
   },
 ];
 
@@ -248,9 +275,10 @@ function mono(profile: (typeof allProfiles)[number]) {
       title="Read the research."
       description="Mapping reports, analytical essays, and contextual reading on ecosystem mapping and the second renaissance field."
     />
+    <div class="rgroup-label">Mapping Reports</div>
     <div class="rlist">
       {
-        reports.map((report, index) => (
+        mappingReports.map((report, index) => (
           <a class="r" href={report.href}>
             <span class="rn">{String(index + 1).padStart(3, '0')}</span>
             <span>
@@ -258,6 +286,21 @@ function mono(profile: (typeof allProfiles)[number]) {
               <span class="rd">{report.description}</span>
             </span>
             <span class="rm">{report.meta}</span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="rgroup-label">Essays & Reflections</div>
+    <div class="rlist">
+      {
+        essays.map((essay, index) => (
+          <a class="r" href={essay.href}>
+            <span class="rn">{String(index + 1).padStart(3, '0')}</span>
+            <span>
+              <span class="rt">{essay.title}</span>
+              <span class="rd">{essay.description}</span>
+            </span>
+            <span class="rm">{essay.meta}</span>
           </a>
         ))
       }
