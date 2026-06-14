@@ -30,8 +30,6 @@ Beyond the directory itself, this companion report examines six organizational e
 
 The full report is available for download via the link above.
 
-> **Note:** The full report text and profiles directory are planned additions to this page. See `docs/plans/2026-05-29-cohere-and-ora-next-steps.md` for the roadmap.
-
 ## Context
 
 This mapping effort is part of the broader Second Renaissance ecosystem mapping work. Related efforts:
