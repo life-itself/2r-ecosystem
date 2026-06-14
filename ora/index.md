@@ -1,21 +1,21 @@
 ---
-title: "A Boundary Makes a Map: Polycrisis Mapping Report"
+title: "ORA Polycrisis Mapping"
 description: "A prototype directory and reflections on mapping organizations responding to the polycrisis — primarily in the global south."
 created: "2023-01-01"
 authors:
   - Catherine Tran
   - Rufus Pollock
 links:
-  - label: Read the Report (PDF)
-    href: https://drive.google.com/file/d/1y-DdWVe6ak-6yHVHFZkoEhLhTqty3QzY/view
-    primary: true
   - label: Browse the Directory
     href: /ora/directory/
+    primary: true
+  - label: Read the Report (PDF)
+    href: https://drive.google.com/file/d/1y-DdWVe6ak-6yHVHFZkoEhLhTqty3QzY/view
 ---
 
 ## Overview
 
-This report documents the creation of a prototype directory mapping organizations addressing the polycrisis, primarily in the global south. The directory initially identified around 90 organizations, with detailed research on 25.
+This work documents the creation of a prototype directory mapping organizations addressing the polycrisis, primarily in the global south. The directory initially identified around 90 organizations, with detailed research on 25.
 
 The work confronted a fundamental challenge: there was, as yet, limited agreement among stakeholders on what exactly defined a "polycrisis response." Rather than waiting for perfect definitions, the team used two practical criteria:
 
@@ -24,11 +24,15 @@ The work confronted a fundamental challenge: there was, as yet, limited agreemen
 
 Snowball sampling built the directory, and reflection on the results refined the boundary questions.
 
-## About the Report
+## The Report: *A Boundary Makes a Map*
 
 Beyond the directory itself, this companion report examines six organizational examples to explore what constitutes genuine polycrisis response — inviting readers to consider whether these organizations demonstrate both intersystemic understanding and transformative action.
 
 The full report is available for download via the link above.
+
+## About ORA
+
+This mapping was carried out in connection with the **Omega Resilience Awards (ORA)**, a project created and managed by **Commonweal**. Life Itself contributed the directory research and report as part of that broader initiative.
 
 ## Context
 
