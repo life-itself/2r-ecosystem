@@ -9,6 +9,8 @@ links:
   - label: Read the Report (PDF)
     href: https://drive.google.com/file/d/1y-DdWVe6ak-6yHVHFZkoEhLhTqty3QzY/view
     primary: true
+  - label: Browse the Directory
+    href: /ora/directory/
 ---
 
 ## Overview

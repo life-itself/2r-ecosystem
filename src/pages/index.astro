@@ -19,6 +19,11 @@ const cohereProfiles = (await getCollection('cohere'))
   )
   .sort((a, b) => a.title.localeCompare(b.title));
 
+const oraProfiles = (await getCollection('ora'))
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'ora', id: profile.id, data: profile.data as Record<string, unknown> }),
+  );
+
 const allProfiles = [...pipProfiles, ...cohereProfiles];
 const topics = new Set(allProfiles.flatMap((profile) => profile.facetPrimary));
 const activities = new Set(allProfiles.flatMap((profile) => profile.facetSecondary));
@@ -138,7 +143,7 @@ function mono(profile: (typeof allProfiles)[number]) {
       number="02"
       label="Mappings"
       title="Browse the collections."
-      description="Two complementary views into organisations, initiatives, and research across the field."
+      description="Three complementary views into organisations, initiatives, and research across the field."
     />
     <div class="coll-grid">
       <a class="coll" href="/pip/">
@@ -162,6 +167,18 @@ function mono(profile: (typeof allProfiles)[number]) {
         <p>
           A broader profile set documenting projects and organisations in
           transformative social change.
+        </p>
+        <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
+      </a>
+      <a class="coll" href="/ora/directory/">
+        <div class="top">
+          <span class="tag">ORA · Polycrisis</span>
+          <span class="count">{oraProfiles.length}</span>
+        </div>
+        <h3>ORA Polycrisis Directory</h3>
+        <p>
+          Organisations responding to the polycrisis, primarily in the global
+          south. Prototype mapping with detailed research profiles.
         </p>
         <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
       </a>

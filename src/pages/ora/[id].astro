@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { normalizeTags, normalizeUrl } from '../../lib/profile';
+
+export async function getStaticPaths() {
+  const profiles = await getCollection('ora');
+  return profiles.map((profile) => ({
+    params: { id: profile.id },
+    props: { entry: profile },
+  }));
+}
+
+const { entry } = Astro.props;
+const data = entry.data as Record<string, unknown>;
+const { Content } = await render(entry);
+
+const title = String(data.title ?? entry.id);
+const website = normalizeUrl(data.website);
+const country = data.country ? String(data.country) : undefined;
+const city = data.city ? String(data.city) : undefined;
+const region = data.region ? String(data.region) : undefined;
+const scale = data.scale ? String(data.scale) : undefined;
+const orgType = data.org_type ? String(data.org_type) : undefined;
+const subtype = data.subtype ? String(data.subtype) : undefined;
+const email = data.email ? String(data.email) : undefined;
+const featured = Boolean(data.featured);
+
+const activities = normalizeTags(data.activities);
+const systemFocus = normalizeTags(data.system_focus);
+const tagsApproach = normalizeTags(data.tags_approach);
+const tagsIssues = normalizeTags(data.tags_issues);
+const keywords = normalizeTags(data.keywords);
+
+const location = [city, country].filter(Boolean).join(', ');
+---
+
+<Base
+  title={`${title} | ORA Profiles`}
+  description={`ORA polycrisis mapping profile for ${title}.`}
+  active="ora"
+>
+  <a class="back-link" href="/ora/directory/">Back to ORA directory</a>
+
+  <section class="profile-hero">
+    <div>
+      {region && <p class="eyebrow">{region}</p>}
+      <h1>{title}</h1>
+      {featured && <span class="badge">Detailed profile</span>}
+      {
+        website && (
+          <p>
+            <a href={website}>{website}</a>
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <dl class="metadata">
+    {location && <div><dt>Location</dt><dd>{location}</dd></div>}
+    {scale && <div><dt>Scale</dt><dd>{scale}</dd></div>}
+    {orgType && <div><dt>Type</dt><dd>{subtype ? `${orgType} · ${subtype}` : orgType}</dd></div>}
+    {activities.length > 0 && <div><dt>Activities</dt><dd>{activities.join(', ')}</dd></div>}
+    {systemFocus.length > 0 && <div><dt>System focus</dt><dd>{systemFocus.join(', ')}</dd></div>}
+    {tagsApproach.length > 0 && <div><dt>Approach</dt><dd>{tagsApproach.join(', ')}</dd></div>}
+    {tagsIssues.length > 0 && <div><dt>Issues</dt><dd>{tagsIssues.join(', ')}</dd></div>}
+    {keywords.length > 0 && <div><dt>Keywords</dt><dd>{keywords.join(', ')}</dd></div>}
+    {email && <div><dt>Email</dt><dd><a href={`mailto:${email}`}>{email}</a></dd></div>}
+  </dl>
+
+  <article class="profile-body">
+    <Content />
+  </article>
+</Base>
+
+<style>
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--color-accent, #2563eb);
+    color: white;
+    padding: 0.15em 0.5em;
+    border-radius: 0.25em;
+    margin-top: 0.5rem;
+  }
+</style>

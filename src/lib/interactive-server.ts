@@ -16,7 +16,9 @@ export function toInteractiveProfile(input: InteractiveProfileInput): Interactiv
   const primary =
     input.collection === 'pip'
       ? normalizeTags(input.data.topic)
-      : normalizeTags(input.data.sectors);
+      : input.collection === 'ora'
+        ? normalizeTags(input.data.tags_approach)
+        : normalizeTags(input.data.sectors);
   const secondary =
     input.collection === 'pip'
       ? normalizeTags(input.data.activity)

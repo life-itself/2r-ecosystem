@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import ProfileSearch from '../../components/ProfileSearch';
+import Base from '../../layouts/Base.astro';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+
+const allProfiles = await getCollection('ora');
+
+const profiles = allProfiles
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'ora', id: profile.id, data: profile.data as Record<string, unknown> }),
+  )
+  .sort((a, b) => a.title.localeCompare(b.title));
+
+const featuredCount = allProfiles.filter((p) => Boolean((p.data as Record<string, unknown>).featured)).length;
+---
+
+<Base
+  title="ORA Profiles | Second Renaissance Ecosystem"
+  description="A prototype directory of organisations responding to the polycrisis, primarily in the global south."
+  active="ora"
+>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Ecosystem</a>
+    <span class="sl">/</span>
+    <a href="/ora/">ORA</a>
+    <span class="sl">/</span>
+    <span>Directory</span>
+  </nav>
+  <header class="page-head">
+    <div class="sec-num">ORA · {profiles.length} ORGANISATIONS · {featuredCount} DETAILED PROFILES</div>
+    <h1>Responding to the polycrisis.</h1>
+    <p>
+      A prototype directory mapping organisations addressing the polycrisis,
+      primarily in the global south. {featuredCount} organisations have detailed research profiles;
+      the remainder are stub entries.
+      <a href="/assets/ora/polycrisis-directory.csv">Download as CSV</a>.
+    </p>
+  </header>
+
+  <ProfileSearch
+    profiles={profiles}
+    primaryLabel="Approach"
+    secondaryLabel="Activity"
+    client:load
+  />
+</Base>

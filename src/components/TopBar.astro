@@ -1,6 +1,6 @@
 ---
 interface Props {
-  active?: 'pip' | 'cohere' | 'directory' | 'reports';
+  active?: 'pip' | 'cohere' | 'ora' | 'directory' | 'reports';
 }
 
 const { active } = Astro.props;
@@ -8,6 +8,7 @@ const { active } = Astro.props;
 const links = [
   { key: 'pip', label: 'PIP', href: '/pip/' },
   { key: 'cohere', label: 'Cohere+', href: '/cohere/' },
+  { key: 'ora', label: 'ORA', href: '/ora/' },
   { key: 'directory', label: 'Directory', href: '/pip/directory/' },
   { key: 'reports', label: 'Reports', href: '/related-efforts/' },
 ];

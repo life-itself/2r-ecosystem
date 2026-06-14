@@ -9,6 +9,10 @@ const cohere = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './cohere/profiles' }),
 });
 
+const ora = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './ora/profiles' }),
+});
+
 const pages = defineCollection({
   loader: glob({
     // Explicit shallow patterns avoid picomatch negation-array issues with
@@ -42,4 +46,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { pip, cohere, pages };
+export const collections = { pip, cohere, ora, pages };

@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs';
 
-export type CollectionName = 'pip' | 'cohere';
+export type CollectionName = 'pip' | 'cohere' | 'ora';
 
 type ProfileInput = {
   collection: CollectionName;
@@ -114,6 +114,20 @@ export function normalizeProfile(input: ProfileInput): NormalizedProfile {
       location: getFirst(data.locations ?? data.regions),
       logo: normalizeImagePath(data.logo),
       image: normalizeImagePath(data.image),
+    };
+  }
+
+  if (collection === 'ora') {
+    return {
+      collection,
+      id,
+      title,
+      url: normalizeUrl(data.website),
+      summary: getString(data.description),
+      eyebrow: getString(data.region),
+      tags: normalizeTags(data.tags_approach),
+      secondaryTags: normalizeTags(data.activities),
+      location: getString(data.country) ?? getString(data.city),
     };
   }
 
