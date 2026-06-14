@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content';
+import ProfileSearch from '../../components/ProfileSearch';
+import Base from '../../layouts/Base.astro';
+import { toInteractiveProfile } from '../../lib/interactive-server';
+
+const profiles = (await getCollection('cohere'))
+  .map((profile) =>
+    toInteractiveProfile({ collection: 'cohere', id: profile.id, data: profile.data }),
+  )
+  .sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<Base
+  title="Cohere+ Profiles | Second Renaissance Ecosystem"
+  description="Cohere+ ecosystem profiles loaded from the root-level markdown collection."
+  active="cohere"
+>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Ecosystem</a>
+    <span class="sl">/</span>
+    <a href="/cohere/">Cohere+</a>
+    <span class="sl">/</span>
+    <span>Directory</span>
+  </nav>
+  <header class="page-head">
+    <div class="sec-num">COHERE+ · {profiles.length} PROFILES</div>
+    <h1>Browse Cohere+ profiles.</h1>
+    <p>
+      Organisations and initiatives from the Cohere+ ecosystem mapping of
+      paradigmatic social change agents in Europe.
+    </p>
+  </header>
+
+  <ProfileSearch
+    profiles={profiles}
+    primaryLabel="Sector"
+    secondaryLabel="Activity"
+    client:load
+  />
+</Base>
