@@ -56,35 +56,8 @@ function formatDate(iso: string) {
         )
       }
     </header>
-    <div class={hasToc ? 'prose-body-with-toc' : 'prose-body'}>
-      <div class="prose-body">
-        <slot />
-      </div>
-      {hasToc && (
-        <aside class="prose-toc-aside">
-          <TableOfContents headings={headings} />
-        </aside>
-      )}
+    <div class="prose-body">
+      <slot />
     </div>
   </article>
 </Base>
-
-<style>
-  .prose-body-with-toc {
-    display: grid;
-    grid-template-columns: 1fr 13rem;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  /* TOC needs design/alignment work before enabling — see https://github.com/life-itself/2r-ecosystem/issues/8 */
-  .prose-toc-aside {
-    display: none;
-  }
-
-  @media (max-width: 900px) {
-    .prose-body-with-toc {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
