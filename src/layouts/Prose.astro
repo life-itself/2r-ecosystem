@@ -1,5 +1,12 @@
 ---
 import Base from './Base.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
 
 interface Props {
   title?: string;
@@ -8,9 +15,11 @@ interface Props {
   authors?: string[];
   links?: Array<{ label: string; href: string; primary?: boolean }>;
   active?: 'pip' | 'cohere' | 'directory' | 'reports';
+  headings?: Heading[];
 }
 
-const { title = 'Untitled', description, created, authors, links, active } = Astro.props;
+const { title = 'Untitled', description, created, authors, links, active, headings = [] } = Astro.props;
+const hasToc = headings.filter((h) => h.depth === 2 || h.depth === 3).length >= 3;
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-GB', {
@@ -47,8 +56,35 @@ function formatDate(iso: string) {
         )
       }
     </header>
-    <div class="prose-body">
-      <slot />
+    <div class={hasToc ? 'prose-body-with-toc' : 'prose-body'}>
+      <div class="prose-body">
+        <slot />
+      </div>
+      {hasToc && (
+        <aside class="prose-toc-aside">
+          <TableOfContents headings={headings} />
+        </aside>
+      )}
     </div>
   </article>
 </Base>
+
+<style>
+  .prose-body-with-toc {
+    display: grid;
+    grid-template-columns: 1fr 13rem;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* TOC needs design/alignment work before enabling — see https://github.com/life-itself/2r-ecosystem/issues/8 */
+  .prose-toc-aside {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .prose-body-with-toc {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
