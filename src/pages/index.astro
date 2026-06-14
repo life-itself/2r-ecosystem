@@ -31,6 +31,18 @@ const previewProfiles = pipProfiles.slice(0, 12);
 
 const reports = [
   {
+    href: '/pip/',
+    title: 'PIP Mapping Report',
+    description: 'Research and profiles mapping paradigmatic, integrative, and pragmatic organisations driving systems change.',
+    meta: 'Report · 2021–2022',
+  },
+  {
+    href: '/ora/',
+    title: 'A Boundary Makes a Map',
+    description: 'Reflections from building a prototype directory of ~90 organisations responding to the polycrisis, primarily in the global south.',
+    meta: 'Report · 2023',
+  },
+  {
     href: '/why/',
     title: 'Why ecosystem mapping?',
     description: 'The purpose, boundaries, and research posture behind this open field map.',
@@ -229,12 +241,12 @@ function mono(profile: (typeof allProfiles)[number]) {
     </div>
   </section>
 
-  <section class="reports">
+  <section class="reports" id="reports">
     <SectionHead
       number="04"
-      label="Reading"
-      title="Read the frame."
-      description="Essays and notes that explain the research context around the ecosystem map."
+      label="Reports & Essays"
+      title="Read the research."
+      description="Mapping reports, analytical essays, and contextual reading on ecosystem mapping and the second renaissance field."
     />
     <div class="rlist">
       {
