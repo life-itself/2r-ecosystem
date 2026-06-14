@@ -79,7 +79,7 @@ Read or download the report below to read: our analysis of high-level commonalit
 
 ### Full report
 
-![[../assets/state-of-sensemaking-report-2020-compressed.pdf]]
+[Download the report (PDF)](/assets/state-of-sensemaking-report-2020-compressed.pdf)
 
 Please cite this report as:
 
