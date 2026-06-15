@@ -263,6 +263,10 @@ main {
   padding: 22px 22px 24px;
 }
 
+.profile-card .eyebrow {
+  min-height: 1em;
+}
+
 .profile-card h2,
 .profile-card h3 {
   margin: 5px 0 0;

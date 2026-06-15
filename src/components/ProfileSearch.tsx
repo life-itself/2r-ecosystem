@@ -186,9 +186,7 @@ export default function ProfileSearch({
                 )}
               </div>
               <div className="profile-card-body">
-                {profile.facetPrimary[0] && (
-                  <p className="eyebrow topic">{profile.facetPrimary[0]}</p>
-                )}
+                <p className="eyebrow topic">{profile.facetPrimary[0] ?? ' '}</p>
                 <h2>{profile.title}</h2>
                 {profile.facetSecondary.length > 0 && (
                   <ul className="tag-list acts">
