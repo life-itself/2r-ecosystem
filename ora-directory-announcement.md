@@ -1,16 +1,16 @@
 ---
-title: "46 Organisations Working on Global Polycrisis — a Directory of the Overlooked"
-description: In 2023 we mapped 46 organisations working on polycrisis response, with particular depth on the Global South. That research has never been published — until now.
+title: "Publishing the ORA Polycrisis Directory"
+description: In 2023 we mapped over 40 organisations working on global polycrisis response, with a focus on the Global South. We are now publishing that directory.
 date: 2026-06-15
 ---
 
-# 46 Organisations Working on Global Polycrisis — a Directory of the Overlooked
+# Publishing the ORA Polycrisis Directory
 
-Most directories of organisations working on civilisational change and societal transformation share a quiet bias: they surface what's already visible in English-language, Northern/Western networks. The organisations doing the hardest work in the hardest contexts — often in the Global South, often outside the usual funding circuits — don't make the list.
+Many directories of organisations working on civilisational change and societal transformation share a common bias: they surface what's already visible in English-language, Northern/Western networks. Organisations based in or primarily oriented toward the Global South — often working on the intersecting systemic crises that don't resolve into a single clean problem frame — are less well represented.
 
-The ORA mapping was designed to push against that.
+The ORA mapping was an attempt to address that.
 
-In 2023, as part of the Omega Resilience Awards (ORA), we mapped 46 organisations working on global polycrisis response, with a deliberate focus on actors underrepresented in mainstream ecosystem surveys. That research has never been publicly available. **Today it is: [ecosystem.secondrenaissance.net/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/)**
+In 2023, as part of the Omega Resilience Awards (ORA), we mapped over 40 organisations working on global polycrisis response, with a deliberate focus on actors underrepresented in mainstream ecosystem surveys. We are now publishing that directory: **[ecosystem.secondrenaissance.net/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/)**
 
 <!-- SCREENSHOT: ORA directory -->
 *[Screenshot: ORA directory]*
@@ -19,7 +19,7 @@ In 2023, as part of the Omega Resilience Awards (ORA), we mapped 46 organisation
 
 ## What's in it
 
-**46 organisations** across Africa, Latin America, South and Southeast Asia, and beyond. 27 have detailed profiles including full qualitative assessments of how each organisation approaches systemic change — what their theory of change is, how they integrate different dimensions of transformation, what they actually do on the ground. The remaining 19 are published as stubs — enough to identify and locate them — with full profiles to follow.
+Over 40 organisations across Africa, Latin America, South and Southeast Asia, and beyond. 27 have detailed profiles including full qualitative assessments of how each organisation approaches systemic change — what their theory of change is, how they integrate different dimensions of transformation, what they actually do on the ground. The remaining entries are published as stubs — enough to identify and locate them — with full profiles to follow.
 
 Each profile includes country, region, scale of operation, activity types, thematic focus areas, and (for detailed profiles) a full assessment against the PIP framework dimensions: Paradigmatic, Integrated, and Pragmatic approaches to change.
 

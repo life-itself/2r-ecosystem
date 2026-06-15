@@ -10,7 +10,7 @@ Something is happening at the edges of mainstream institutions. A loosely connec
 
 For five years, we've been trying to map it.
 
-That work has produced three major research efforts: the **PIP mapping** (~150 organisations taking Paradigmatic, Integrated, and Pragmatic approaches to social change), the **Cohere+ directory** (~300 organisations in the EU transformative change ecosystem), and the **ORA polycrisis mapping** (46 organisations working on global polycrisis response, with a focus on the Global South). Together that's approaching 500 profiles of people, projects, and institutions working at the edge of what's possible.
+That work has produced three major research efforts: the **PIP mapping** (~150 organisations taking Paradigmatic, Integrated, and Pragmatic approaches to social change), the **Cohere+ directory** (~300 organisations in the EU transformative change ecosystem), and the **ORA polycrisis mapping** (over 40 organisations working on global polycrisis response, with a focus on the Global South). Together that's over 400 profiles of people, projects, and institutions working at the edge of what's possible.
 
 Until now, those three bodies of research lived in scattered places — different repositories, different URLs, one of them (ORA) never published at all. Today that changes.
 
@@ -42,7 +42,7 @@ The PIP research is the most developed: a full analytical essay at [/pip/](https
 
 ### The ORA Polycrisis Directory — newly published
 
-The ORA mapping is being published for the first time alongside this update. 46 organisations working on polycrisis response, with particular depth on the Global South — the part of the landscape most underrepresented in Western-centric ecosystem surveys. [Read more about it here](/ora-directory-announcement), or go straight to [/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/).
+The ORA directory is being published alongside this update. Over 40 organisations working on polycrisis response, with particular depth on the Global South — the part of the landscape most underrepresented in Western-centric ecosystem surveys. [Read more about it here](/ora-directory-announcement), or go straight to [/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/).
 
 <!-- SCREENSHOT: directory page with facets and cards -->
 *[Screenshot: directory with search and filter]*
@@ -74,7 +74,7 @@ The consolidation proposal we wrote in May 2025 ([read it here](/consolidation-p
 
 The site is live and the research is accessible, but there's more to do:
 
-- **ORA profiles**: 19 of the 46 ORA entries are stubs — we'll be completing those over the coming months
+- **ORA profiles**: a number of ORA entries are stubs — we'll be completing those over the coming months
 - **Cohere+ visualisation**: the interactive network map from the original Cohere+ project needs to be restored
 - **Unified search**: a single index across all three mappings so you can search the full 500-profile corpus at once
 
