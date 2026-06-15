@@ -192,6 +192,7 @@ section{position:relative;}
 .hero .meta-strip .m:not(:first-child){padding-left:22px;border-left:1px solid var(--line);}
 .hero .meta-strip .n{font-family:var(--display);font-weight:var(--display-wght);font-size:1.7rem;line-height:1;}
 .hero .meta-strip .l{font-family:var(--label);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:7px;}
+.hero .hero-sub{font-family:var(--label);font-size:.72rem;letter-spacing:.06em;color:var(--faint);margin-top:1.4rem;line-height:1.6;}
 
 /* the constellation figure */
 .figure{position:relative;}

@@ -26,6 +26,7 @@ const oraProfiles = (await getCollection('ora'))
   );
 
 const allProfiles = [...pipProfiles, ...cohereProfiles];
+const totalProfileCount = allProfiles.length + oraProfiles.length;
 const topics = new Set(allProfiles.flatMap((profile) => profile.facetPrimary));
 const activities = new Set(allProfiles.flatMap((profile) => profile.facetSecondary));
 const previewProfiles = [...pipProfiles].sort((a, b) => compareDirectoryProfiles(a, b, 'az')).slice(0, 12);
@@ -60,6 +61,21 @@ const mappingReports = [
     title: 'Second Renaissance Map',
     description: 'An interactive map of the second renaissance ecosystem.',
     meta: 'Map · external',
+  },
+];
+
+const updates = [
+  {
+    href: '/site-update-june-2026/',
+    title: 'Five Years of Mapping an Emerging Movement — Now in One Place',
+    description: 'The consolidated hub, redesigned site, and the story behind bringing five years of research together.',
+    meta: 'Announcement · June 2026',
+  },
+  {
+    href: '/ora-directory-announcement/',
+    title: 'The ORA Polycrisis Directory Is Now Public',
+    description: '46 organisations working on global polycrisis response, with a focus on the Global South — published for the first time.',
+    meta: 'Announcement · June 2026',
   },
 ];
 
@@ -102,7 +118,7 @@ function mono(profile: (typeof allProfiles)[number]) {
 
 <Base
   title="Second Renaissance Ecosystem Mapping"
-  description="Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change."
+  description="Nearly 500 profiles of organisations working on civilisational transition, polycrisis response, and societal transformation — five years of ecosystem mapping consolidated in one place."
 >
   <section class="hero">
     <div class="hero-grid">
@@ -110,9 +126,8 @@ function mono(profile: (typeof allProfiles)[number]) {
         <p class="label tick">Ecosystem mapping · open research</p>
         <h1>Mapping a Second Renaissance.</h1>
         <p class="lead">
-          Research, profiles, and visual instruments for an emerging ecosystem
-          of change agents working across paradigmatic, integrative, and
-          pragmatic approaches to social change.
+          Exploring an emerging ecosystem of organisations and movements working
+          to transform society from the inside out.
         </p>
         <div class="cta">
           <a class="btn btn-primary" href="/pip/directory/">
@@ -122,11 +137,11 @@ function mono(profile: (typeof allProfiles)[number]) {
         </div>
         <div class="meta-strip" aria-label="Ecosystem statistics">
           <div class="m">
-            <div class="n">{allProfiles.length}</div>
+            <div class="n">{totalProfileCount}</div>
             <div class="l">Profiles</div>
           </div>
           <div class="m">
-            <div class="n">2</div>
+            <div class="n">3</div>
             <div class="l">Mappings</div>
           </div>
           <div class="m">
@@ -138,6 +153,9 @@ function mono(profile: (typeof allProfiles)[number]) {
             <div class="l">Activities</div>
           </div>
         </div>
+        <p class="hero-sub">
+          Polycrisis · Metacrisis · Civilisational Renewal — five years of fieldwork so you don't navigate this landscape alone.
+        </p>
       </div>
       <NetworkFigure />
     </div>
@@ -193,8 +211,9 @@ function mono(profile: (typeof allProfiles)[number]) {
         </div>
         <h3>PIP Ecosystem Map</h3>
         <p>
-          Profiles of organisations and initiatives taking paradigmatic,
-          integrative, and pragmatic approaches to social change.
+          ~100 organisations taking paradigmatic, integrative, and pragmatic
+          approaches to civilisational change — with interactive visualisations
+          and a full research essay.
         </p>
         <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
       </a>
@@ -205,8 +224,8 @@ function mono(profile: (typeof allProfiles)[number]) {
         </div>
         <h3>Cohere+ Profiles</h3>
         <p>
-          A broader profile set documenting projects and organisations in
-          transformative social change.
+          ~300 projects and organisations in the European transformative change
+          ecosystem, compiled for the EU-funded Cohere+ project.
         </p>
         <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
       </a>
@@ -217,8 +236,8 @@ function mono(profile: (typeof allProfiles)[number]) {
         </div>
         <h3>ORA Polycrisis Directory</h3>
         <p>
-          Organisations responding to the polycrisis, primarily in the global
-          south. Prototype mapping with detailed research profiles.
+          40+ organisations working on global polycrisis response, with a focus
+          on the Global South. Published here for the first time.
         </p>
         <span class="go">Explore <span class="arw" aria-hidden="true">→</span></span>
       </a>
@@ -276,6 +295,21 @@ function mono(profile: (typeof allProfiles)[number]) {
       title="Read the research."
       description="Mapping reports, analytical essays, and contextual reading on ecosystem mapping and the second renaissance field."
     />
+    <div class="rgroup-label">Latest Updates</div>
+    <div class="rlist">
+      {
+        updates.map((update, index) => (
+          <a class="r" href={update.href}>
+            <span class="rn">{String(index + 1).padStart(3, '0')}</span>
+            <span>
+              <span class="rt">{update.title}</span>
+              <span class="rd">{update.description}</span>
+            </span>
+            <span class="rm">{update.meta}</span>
+          </a>
+        ))
+      }
+    </div>
     <div class="rgroup-label">Mapping Reports</div>
     <div class="rlist">
       {
