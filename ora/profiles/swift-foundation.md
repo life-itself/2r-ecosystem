@@ -1,6 +1,7 @@
 ---
 title: Swift Foundation
 website: "https://swiftfoundation.org/"
+image: "assets/swiftfoundation.org.jpg"
 activities: []
 system_focus: []
 tags_approach: []

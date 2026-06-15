@@ -1,6 +1,7 @@
 ---
 title: International Institute for Environment and Development (IIED)
 website: "https://www.iied.org/"
+image: "assets/iied.org.jpg"
 email: ""
 city: London
 country: UK
