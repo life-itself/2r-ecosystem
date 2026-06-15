@@ -32,9 +32,9 @@ logo:
   cached: https://res.cloudinary.com/ds7qslkd0/image/upload/v1633363990/Ecosystem%20Mapping/life-itself-logo_syl7ai.svg
   cached_new: /img/life-itself-logo_syl7ai.svg
 image:
-  url: https://lifeitself.us/wp-content/uploads/2020/12/life-itself-logo.svg
-  cached: https://res.cloudinary.com/ds7qslkd0/image/upload/v1633363990/Ecosystem%20Mapping/life-itself-logo_syl7ai.svg
-  cached_new: /img/life-itself-logo_syl7ai.svg
+  url: https://lifeitself.us
+  cached: /assets/life-itself-homepage.png
+  cached_new: /assets/life-itself-homepage.png
 title: Life Itself
 curation_status: YY
 social_change:
