@@ -118,16 +118,22 @@ export function normalizeProfile(input: ProfileInput): NormalizedProfile {
   }
 
   if (collection === 'ora') {
+    const website = normalizeUrl(data.website);
+    const image =
+      normalizeImagePath(data.image) ??
+      (website ? `https://screenshotit.app/${website}` : undefined);
     return {
       collection,
       id,
       title,
-      url: normalizeUrl(data.website),
+      url: website,
       summary: getString(data.description),
       eyebrow: getString(data.region),
       tags: normalizeTags(data.tags_approach),
       secondaryTags: normalizeTags(data.activities),
       location: getString(data.country) ?? getString(data.city),
+      logo: normalizeImagePath(data.logo),
+      image,
     };
   }
 

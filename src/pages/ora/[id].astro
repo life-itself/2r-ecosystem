@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { normalizeTags, normalizeUrl } from '../../lib/profile';
+import { normalizeImagePath, normalizeTags, normalizeUrl } from '../../lib/profile';
 
 export async function getStaticPaths() {
   const profiles = await getCollection('ora');
@@ -25,6 +25,9 @@ const orgType = data.org_type ? String(data.org_type) : undefined;
 const subtype = data.subtype ? String(data.subtype) : undefined;
 const email = data.email ? String(data.email) : undefined;
 const featured = Boolean(data.featured);
+const image =
+  normalizeImagePath(data.image) ??
+  (website ? `https://screenshotit.app/${website}` : undefined);
 
 const activities = normalizeTags(data.activities);
 const systemFocus = normalizeTags(data.system_focus);
@@ -43,6 +46,11 @@ const location = [city, country].filter(Boolean).join(', ');
   <a class="back-link" href="/ora/directory/">Back to ORA directory</a>
 
   <section class="profile-hero">
+    {image && (
+      <div class="profile-hero-image">
+        <img src={image} alt={`${title} homepage`} loading="lazy" />
+      </div>
+    )}
     <div>
       {region && <p class="eyebrow">{region}</p>}
       <h1>{title}</h1>
@@ -75,6 +83,21 @@ const location = [city, country].filter(Boolean).join(', ');
 </Base>
 
 <style>
+  .profile-hero-image {
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-height: 320px;
+  }
+
+  .profile-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
   .badge {
     display: inline-block;
     font-size: 0.7rem;
