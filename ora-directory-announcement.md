@@ -4,8 +4,6 @@ description: In 2023 we mapped over 40 organisations working on global polycrisi
 date: 2026-06-15
 ---
 
-# Publishing the ORA Polycrisis Directory
-
 Many directories of organisations working on civilisational change and societal transformation share a common bias: they surface what's already visible in English-language, Northern/Western networks. Organisations based in or primarily oriented toward the Global South — often working on the intersecting systemic crises that don't resolve into a single clean problem frame — are less well represented.
 
 The ORA mapping was an attempt to address that.

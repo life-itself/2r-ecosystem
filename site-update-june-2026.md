@@ -4,8 +4,6 @@ description: We've spent five years mapping the organisations, initiatives, and 
 date: 2026-06-15
 ---
 
-# Five Years of Mapping an Emerging Movement — Now in One Place
-
 Something is happening at the edges of mainstream institutions. A loosely connected ecosystem of organisations, researchers, and practitioners is working on problems that most institutions aren't yet equipped to face: civilisational transition, polycrisis response, the inner dimensions of systemic change. It doesn't have a single name. It doesn't have a headquarters. But it is real, it is growing, and it is extraordinarily difficult to navigate if you're new to it — or even if you aren't.
 
 For five years, we've been trying to map it.
