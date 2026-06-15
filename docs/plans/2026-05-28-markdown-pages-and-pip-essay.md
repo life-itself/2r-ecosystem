@@ -1,3 +1,8 @@
+---
+created: 2026-05-28
+status: done
+---
+
 # Markdown Pages System and PIP Essay Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.

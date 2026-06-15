@@ -1,3 +1,8 @@
+---
+created: 2026-01-23
+status: done
+---
+
 # Flowershow Cloud Migration Design
 
 ## Goal

@@ -1,6 +1,6 @@
 ---
 created: 2026-05-28
-status: draft
+status: done
 ---
 
 # Plan: PIP Report Page, Markdown Rendering, and Directory URL
