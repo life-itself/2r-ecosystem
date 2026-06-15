@@ -1,10 +1,10 @@
 ---
-title: Second Renaissance Ecosystem Mapping
-description: Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change.
+title: Mapping a Second Renaissance
+description: Exploring an emerging ecosystem of organizations and movements working to transform society from the inside out.
 image: /assets/Social_Change_Ecosystem-1024x626.png
 ---
 
-Mapping an emerging ecosystem of change agents working on paradigmatic, integrative, and pragmatic approaches to social change.
+Exploring an emerging ecosystem of organizations and movements working to transform society from the inside out.
 
 ## Mappings
 
@@ -35,3 +35,8 @@ Mapping an emerging ecosystem of change agents working on paradigmatic, integrat
 </a>
 
 </div>
+
+## Updates
+
+- [Five Years of Mapping an Emerging Movement — Now in One Place](site-update-june-2026) — the consolidated hub, redesigned site, and five years of research in one place *(June 2026)*
+- [The ORA Polycrisis Directory Is Now Public](ora-directory-announcement) — 46 organisations working on global polycrisis response, with a focus on the Global South *(June 2026)*
