@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import NetworkFigure from '../components/NetworkFigure.astro';
 import SectionHead from '../components/SectionHead.astro';
 import Base from '../layouts/Base.astro';
+import { compareDirectoryProfiles } from '../lib/directory-sort';
 import { toInteractiveProfile } from '../lib/interactive-server';
 import { isCuratedPipProfile } from '../lib/profile';
 
@@ -27,7 +28,7 @@ const oraProfiles = (await getCollection('ora'))
 const allProfiles = [...pipProfiles, ...cohereProfiles];
 const topics = new Set(allProfiles.flatMap((profile) => profile.facetPrimary));
 const activities = new Set(allProfiles.flatMap((profile) => profile.facetSecondary));
-const previewProfiles = pipProfiles.slice(0, 12);
+const previewProfiles = [...pipProfiles].sort((a, b) => compareDirectoryProfiles(a, b, 'az')).slice(0, 12);
 
 const mappingReports = [
   {

@@ -8,6 +8,7 @@ import {
   type FacetState,
   type InteractiveProfile,
 } from '../lib/interactive';
+import { compareDirectoryProfiles } from '../lib/directory-sort';
 
 type Props = {
   profiles: InteractiveProfile[];
@@ -52,18 +53,7 @@ export default function ProfileSearch({
       matchesFacets(profile, facets) &&
       (collection.length === 0 || collection.includes(profile.collection))
     ));
-    return [...filtered].sort((a, b) => {
-      if (sort === 'topic') {
-        return (a.facetPrimary[0] ?? '').localeCompare(b.facetPrimary[0] ?? '') ||
-          a.title.localeCompare(b.title);
-      }
-
-      if (sort === 'mapping') {
-        return a.collection.localeCompare(b.collection) || a.title.localeCompare(b.title);
-      }
-
-      return a.title.localeCompare(b.title);
-    });
+    return [...filtered].sort((a, b) => compareDirectoryProfiles(a, b, sort));
   }, [collection, facets, searchedProfiles, sort]);
 
   const primaryOptions = useMemo(
