@@ -14,8 +14,7 @@ Until now, those three bodies of research lived in scattered places — differen
 
 **[ecosystem.secondrenaissance.net](https://ecosystem.secondrenaissance.net) is now the consolidated home for all of it.**
 
-<!-- SCREENSHOT: homepage -->
-*[Screenshot: homepage]*
+![The ecosystem.secondrenaissance.net homepage](/assets/posts/site-home-2026-06-15.jpg)
 
 ---
 
@@ -31,8 +30,7 @@ Navigating this ecosystem without a map is hard. The organisations working on ci
 
 The PIP research is the most developed: a full analytical essay at [/pip/](https://ecosystem.secondrenaissance.net/pip/) with two interactive visualisations embedded in context — a **CircularVis** plotting organisations by topic, and a **TernaryPlot** mapping the full set against the three dimensions of the PIP framework (Paradigmatic, Integrated, Pragmatic). The [directory at /pip/directory/](https://ecosystem.secondrenaissance.net/pip/directory/) lets you browse and filter all profiles.
 
-<!-- SCREENSHOT: PIP essay with TernaryPlot visible -->
-*[Screenshot: PIP essay with inline TernaryPlot]*
+![PIP essay with TernaryPlot embedded inline](/assets/posts/pip-essay-ternary.jpg)
 
 ### The Cohere+ Directory
 
@@ -42,8 +40,7 @@ The PIP research is the most developed: a full analytical essay at [/pip/](https
 
 The ORA directory is being published alongside this update. Over 40 organisations working on polycrisis response, with particular depth on the Global South — the part of the landscape most underrepresented in Western-centric ecosystem surveys. [Read more about it here](/ora-directory-announcement), or go straight to [/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/).
 
-<!-- SCREENSHOT: directory page with facets and cards -->
-*[Screenshot: directory with search and filter]*
+![Directory with search and filter facets](/assets/posts/pip-directory.jpg)
 
 ---
 
@@ -53,8 +50,7 @@ The site has been rebuilt from the ground up — not just reskinned. The most vi
 
 But the bigger improvement is in how the directories work. The old experience was a flat list. The new one is a proper research interface: sticky filter facets by topic, approach, activity type and region; full-text search; result counts; and a responsive card grid that surfaces profile imagery where it exists and falls back gracefully where it doesn't. Browsing 300 Cohere+ profiles or 150 PIP profiles is now actually usable.
 
-<!-- SCREENSHOT: directory cards with imagery -->
-*[Screenshot: directory cards with facets]*
+![Directory profile cards with imagery](/assets/posts/directory-grid.jpg)
 
 ---
 

@@ -10,8 +10,7 @@ The ORA mapping was an attempt to address that.
 
 In 2023, as part of the Omega Resilience Awards (ORA), we mapped over 40 organisations working on global polycrisis response, with a deliberate focus on actors underrepresented in mainstream ecosystem surveys. We are now publishing that directory: **[ecosystem.secondrenaissance.net/ora/directory/](https://ecosystem.secondrenaissance.net/ora/directory/)**
 
-<!-- SCREENSHOT: ORA directory -->
-*[Screenshot: ORA directory]*
+![ORA polycrisis directory](/assets/posts/ora-directory.jpg)
 
 ---
 
@@ -23,8 +22,7 @@ Each profile includes country, region, scale of operation, activity types, thema
 
 The raw data is also available as a [CSV download](/assets/ora/polycrisis-directory.csv) if you want to work with it directly.
 
-<!-- SCREENSHOT: example ORA profile page -->
-*[Screenshot: ORA profile — Gaia Foundation]*
+![ORA profile page — Gaia Foundation](/assets/posts/ora-profile-example.jpg)
 
 ---
 
