@@ -18,6 +18,8 @@ title: Changelog
 
 Data migrated from an Airtable/Elements CSV export (`Elements-All Elements & All Fields.csv`). A one-time conversion script (`scripts/generate-ora-profiles.py`) generated the 46 markdown files in `ora/profiles/`. The 27 "ready to share" entries are flagged `featured: true` in frontmatter and shown with a "Detailed profile" badge.
 
+→ [ORA directory announcement](/ora-directory-announcement/)
+
 # 2026-06-08 - Ecosystem Site Redesign
 
 **TL;DR:** The site has been redesigned around the Second Renaissance Ecosystem handoff: warmer editorial typography, research-instrument UI chrome, a new landing page, redesigned directory browsing, and shared navigation/footer components across the Astro site.
@@ -51,6 +53,8 @@ This brings the live Astro implementation much closer to the `sandbox/design_han
 
 - Updated styling tests to cover the new design-system split and image-backed directory cards
 - Full test suite and Astro build pass locally
+
+→ [Full site update announcement](/site-update-june-2026/)
 
 # 2026-05-29 - Ecosystem Site Update
 
@@ -95,4 +99,4 @@ Tracked in [docs/PLAN.md](docs/PLAN.md):
 
 # 2025-05-14 - Consolidation Proposal
 
-The original consolidation proposal — situational analysis, complication, hypothesis, and outcome vision — has been moved to its own document: [consolidation-proposal.md](consolidation-proposal.md).
+The original consolidation proposal — situational analysis, complication, hypothesis, and outcome vision — has been moved to its own document: [consolidation-proposal](/consolidation-proposal/).
