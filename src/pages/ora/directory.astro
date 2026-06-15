@@ -34,8 +34,10 @@ const featuredCount = allProfiles.filter((p) => Boolean((p.data as Record<string
       A prototype directory mapping organisations addressing the polycrisis,
       primarily in the global south. {featuredCount} organisations have detailed research profiles;
       the remainder are stub entries.
-      <a href="/assets/ora/polycrisis-directory.csv">Download as CSV</a>.
     </p>
+    <div class="prose-actions">
+      <a class="button" href="/assets/ora/polycrisis-directory.csv" download>Download as CSV</a>
+    </div>
   </header>
 
   <ProfileSearch
