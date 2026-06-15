@@ -8,3 +8,4 @@ out/
 .obsidian/
 pnpm-lock.yaml
 .claude
+sandbox/
